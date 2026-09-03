@@ -1,0 +1,2366 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Nouf Sales Message Studio: bilingual WhatsApp and email message tool for Caiperia Internet Services sales outreach.">
+<style>html{color-scheme:dark light}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Nouf Sales Message Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* ============ tokens: dark navy first, light theme swapped in ============ */
+:root{
+  --ground:#061424;
+  --ground-2:#0a1e33;
+  --panel:#0e2740;
+  --panel-2:#123252;
+  --raise:#16385a;
+  --line:#1d4067;
+  --line-soft:#153050;
+  --ink:#eaf3fb;
+  --ink-2:#a6c0d8;
+  --ink-3:#6c89a7;
+  --blue:#3b8dff;
+  --blue-ink:#0a1524;
+  --blue-soft:rgba(59,141,255,.15);
+  --turq:#33d6c2;
+  --turq-soft:rgba(51,214,194,.15);
+  --amber:#f0b344;
+  --amber-soft:rgba(240,179,68,.14);
+  --bad:#ff7b7b;
+  --bad-soft:rgba(255,123,123,.14);
+  --fd:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;
+  --fs:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
+  --fa:'IBM Plex Sans Arabic','IBM Plex Sans',system-ui,sans-serif;
+  --fm:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --r:10px;
+  --r-sm:7px;
+  --shadow:0 1px 0 rgba(255,255,255,.03) inset, 0 10px 30px -18px rgba(0,0,0,.8);
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --ground:#eef4fa;
+    --ground-2:#ffffff;
+    --panel:#ffffff;
+    --panel-2:#f4f9fd;
+    --raise:#e8f1f9;
+    --line:#cfdeeb;
+    --line-soft:#e2ecf4;
+    --ink:#08243c;
+    --ink-2:#3d6382;
+    --ink-3:#7692a8;
+    --blue:#0b60d3;
+    --blue-ink:#ffffff;
+    --blue-soft:rgba(11,96,211,.10);
+    --turq:#0b8a7c;
+    --turq-soft:rgba(11,138,124,.12);
+    --amber:#a76a05;
+    --amber-soft:rgba(167,106,5,.12);
+    --bad:#c8393f;
+    --bad-soft:rgba(200,57,63,.10);
+    --shadow:0 1px 2px rgba(10,36,60,.06), 0 12px 28px -22px rgba(10,36,60,.45);
+  }
+}
+:root[data-theme="light"]{
+  --ground:#eef4fa;
+  --ground-2:#ffffff;
+  --panel:#ffffff;
+  --panel-2:#f4f9fd;
+  --raise:#e8f1f9;
+  --line:#cfdeeb;
+  --line-soft:#e2ecf4;
+  --ink:#08243c;
+  --ink-2:#3d6382;
+  --ink-3:#7692a8;
+  --blue:#0b60d3;
+  --blue-ink:#ffffff;
+  --blue-soft:rgba(11,96,211,.10);
+  --turq:#0b8a7c;
+  --turq-soft:rgba(11,138,124,.12);
+  --amber:#a76a05;
+  --amber-soft:rgba(167,106,5,.12);
+  --bad:#c8393f;
+  --bad-soft:rgba(200,57,63,.10);
+  --shadow:0 1px 2px rgba(10,36,60,.06), 0 12px 28px -22px rgba(10,36,60,.45);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:var(--fa);
+  font-size:15px;
+  line-height:1.65;
+  -webkit-text-size-adjust:100%;
+}
+[hidden]{display:none!important}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--turq);outline-offset:2px;border-radius:4px}
+a{color:var(--blue)}
+
+/* ============ shared bits ============ */
+.wrap{max-width:1200px;margin:0 auto;padding:0 14px 64px}
+.fiber{height:3px;background:linear-gradient(90deg,#0a2340 0%,var(--blue) 42%,var(--turq) 78%,#0a2340 100%)}
+.patch{
+  height:9px;
+  background-image:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 9px);
+  opacity:.55;
+}
+.eyebrow{
+  font-family:var(--fd);
+  font-size:11.5px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  margin:0;
+}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  min-height:42px;padding:0 15px;
+  background:var(--panel-2);
+  border:1px solid var(--line);
+  border-radius:var(--r-sm);
+  color:var(--ink);
+  font-weight:500;font-size:14px;
+  cursor:pointer;
+  transition:background .15s ease,border-color .15s ease,transform .08s ease;
+}
+.btn:hover{background:var(--raise);border-color:var(--blue)}
+.btn:active{transform:translateY(1px)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:var(--blue-ink);font-weight:600}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent}
+.btn.sm{min-height:34px;padding:0 11px;font-size:13px}
+.btn.danger{color:var(--bad);border-color:var(--bad)}
+.btn.turq{border-color:var(--turq);color:var(--turq);background:var(--turq-soft)}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  min-height:32px;padding:0 11px;
+  border:1px solid var(--line);border-radius:999px;
+  background:transparent;color:var(--ink-2);
+  font-size:13px;cursor:pointer;
+}
+.chip:hover{border-color:var(--blue);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--blue-soft);border-color:var(--blue);color:var(--ink)}
+.tag{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:2px 8px;border-radius:999px;
+  font-size:11.5px;font-weight:500;letter-spacing:.01em;
+  border:1px solid var(--line);color:var(--ink-2);
+}
+.tag.wa{background:var(--turq-soft);border-color:transparent;color:var(--turq)}
+.tag.em{background:var(--blue-soft);border-color:transparent;color:var(--blue)}
+.tag.stage{background:transparent;color:var(--ink-3)}
+label.fld{display:flex;flex-direction:column;gap:5px;font-size:12.5px;color:var(--ink-2)}
+.lb{display:flex;flex-direction:column;gap:0;min-height:2.7em;justify-content:flex-end}
+.lb .en{font-family:var(--fd);letter-spacing:.06em;text-transform:uppercase;font-size:10.5px;color:var(--ink-3);line-height:1.35}
+.lb .ar{font-size:11.5px;color:var(--ink-2);line-height:1.35}
+.tag bdi + bdi{opacity:.72;margin-inline-start:5px}
+input[type=text],input[type=password],select,textarea{
+  width:100%;
+  background:var(--ground-2);
+  border:1px solid var(--line);
+  border-radius:var(--r-sm);
+  padding:9px 11px;
+  min-height:40px;
+}
+textarea{resize:vertical}
+input:hover,select:hover,textarea:hover{border-color:var(--line)}
+.card{
+  background:var(--panel);
+  border:1px solid var(--line-soft);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+}
+.muted{color:var(--ink-3);font-size:12.5px}
+.mono{font-family:var(--fm);font-variant-numeric:tabular-nums}
+
+/* ============ gate ============ */
+#gate{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:24px 16px;
+  background:
+    radial-gradient(900px 420px at 50% -8%, var(--blue-soft), transparent 70%),
+    var(--ground);
+}
+.gate-card{width:100%;max-width:420px;padding:26px 22px 20px;background:var(--panel);border:1px solid var(--line-soft);border-radius:14px;box-shadow:var(--shadow)}
+.mark{display:flex;align-items:center;gap:10px}
+.mark svg{flex:0 0 auto}
+.mark b{font-family:var(--fd);font-size:17px;letter-spacing:.01em;font-weight:600}
+.gate-card h1{font-family:var(--fd);font-size:23px;line-height:1.25;margin:16px 0 4px;text-wrap:balance}
+.pw-row{display:flex;gap:8px;margin-top:16px}
+.pw-row input{font-family:var(--fm);letter-spacing:.28em;text-align:center;min-height:46px}
+#gateMsg{min-height:20px;font-size:13px;margin-top:9px;color:var(--bad)}
+.gate-note{margin-top:14px;padding-top:13px;border-top:1px solid var(--line-soft);color:var(--ink-3);font-size:12px;line-height:1.6}
+
+/* ============ header ============ */
+header.top{background:var(--ground-2);border-bottom:1px solid var(--line-soft)}
+.top-in{max-width:1200px;margin:0 auto;padding:11px 14px;display:flex;align-items:center;gap:10px;flex-wrap:nowrap}
+.top-in .acts{display:flex;gap:7px;flex:0 0 auto}
+@media (max-width:600px){
+  .top-in > svg{display:none}
+  .top-in .who b{font-size:14px}
+  .top-in .who span{font-size:11px}
+  .top-in .acts .btn{padding:0 9px;font-size:12.5px}
+}
+.top-in .who{flex:1 1 190px;min-width:0}
+.top-in .who b{display:block;font-family:var(--fd);font-size:16px;line-height:1.3}
+.top-in .who span{display:block;font-size:12px;color:var(--ink-3)}
+
+/* ============ sections ============ */
+section{margin-top:22px}
+.sec-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.sec-head h2{font-family:var(--fd);font-size:19px;margin:0}
+.sec-head .muted{margin-inline-start:auto}
+
+/* command bar */
+#cmdCard{padding:16px 15px 15px}
+.cmd-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px}
+#cmdInput{
+  flex:1 1 260px;min-height:52px;
+  font-family:var(--fm);font-size:15px;
+  background:var(--ground-2);
+  border:1px solid var(--blue);
+  box-shadow:0 0 0 3px var(--blue-soft);
+}
+.syntax{font-family:var(--fm);font-size:12.5px;color:var(--ink-3);margin-top:7px;line-height:1.8}
+.syntax b{color:var(--turq);font-weight:500}
+.chips{display:flex;gap:7px;margin-top:11px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.chips > .chip{flex:0 0 auto;white-space:nowrap}
+@media (min-width:820px){.chips{flex-wrap:wrap;overflow:visible}.chips > .chip{white-space:normal}}
+.parse{
+  margin-top:12px;padding:11px 12px;border-radius:var(--r-sm);
+  background:var(--panel-2);border:1px solid var(--line-soft);
+  display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+}
+.parse .kv{font-size:12.5px;color:var(--ink-2)}
+.parse .kv b{color:var(--ink);font-weight:500}
+.ask{border-color:var(--amber);background:var(--amber-soft)}
+.recent{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.recent .chip{font-family:var(--fm);font-size:12px;max-width:100%}
+.recent .chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:44ch}
+
+/* editor */
+#editorCard{padding:15px}
+.ed-title{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.ed-title h3{font-family:var(--fd);font-size:17px;margin:0}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:13px}
+.subject-row{margin-top:12px;display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap}
+.subject-row label.fld{flex:1 1 260px}
+.cols{display:grid;grid-template-columns:1fr;gap:12px;margin-top:13px;direction:ltr}
+@media (min-width:900px){.cols{grid-template-columns:1fr 1fr}}
+.col{display:flex;flex-direction:column;background:var(--panel-2);border:1px solid var(--line-soft);border-radius:var(--r-sm);overflow:hidden}
+.col-head{display:flex;align-items:center;gap:8px;padding:8px 11px;border-bottom:1px solid var(--line-soft);background:var(--ground-2)}
+.col-head b{font-family:var(--fd);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.col-head .count{margin-inline-start:auto;font-family:var(--fm);font-size:11.5px;color:var(--ink-3);font-variant-numeric:tabular-nums;unicode-bidi:isolate}
+.col textarea{
+  border:0;border-radius:0;background:transparent;
+  min-height:250px;padding:12px;line-height:1.7;
+}
+#enBox{font-family:var(--fs);font-size:14.5px}
+#arBox{font-family:var(--fa);font-size:14.5px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
+.actions .sep{flex-basis:100%;height:1px;background:var(--line-soft);margin:3px 0}
+.notice{
+  margin-top:11px;padding:10px 12px;border-radius:var(--r-sm);
+  background:var(--amber-soft);border:1px solid var(--amber);
+  font-size:13px;line-height:1.6;
+}
+.notice a{color:var(--ink);text-decoration:underline}
+.hint{margin-top:9px;font-size:12.5px;color:var(--ink-3)}
+.switch{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-2);cursor:pointer}
+.switch input{width:auto;min-height:0;margin:0}
+
+/* library */
+.filters{padding:13px 14px;display:flex;flex-direction:column;gap:10px}
+.filters .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filters .row.grow > *{flex:0 0 auto}
+#search{flex:1 1 220px;min-width:0}
+#svcFilter{flex:0 1 260px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;margin-top:12px}
+article.item{padding:13px 14px;display:flex;flex-direction:column;gap:9px}
+article.item .head{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+article.item h4{margin:0;font-size:15px;font-weight:600;line-height:1.45;flex:1 1 100%;text-wrap:balance}
+article.item .desc{margin:0;font-size:12.5px;color:var(--ink-2);line-height:1.6}
+.prev{
+  font-family:var(--fs);font-size:12.5px;line-height:1.6;color:var(--ink-3);
+  direction:ltr;text-align:left;
+  background:var(--panel-2);border:1px solid var(--line-soft);border-radius:var(--r-sm);
+  padding:9px 10px;margin:0;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+article.item .row{display:flex;gap:7px;flex-wrap:wrap;margin-top:auto}
+.saved-dot{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--turq)}
+.saved-dot i{width:6px;height:6px;border-radius:50%;background:var(--turq);display:block}
+.empty{padding:26px 14px;text-align:center;color:var(--ink-3);font-size:13.5px}
+
+/* cadence */
+.cad{display:flex;flex-direction:column;gap:9px}
+.cad details{border:1px solid var(--line-soft);border-radius:var(--r-sm);background:var(--panel);overflow:hidden}
+.cad summary{
+  padding:11px 13px;cursor:pointer;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  list-style:none;
+}
+.cad summary::-webkit-details-marker{display:none}
+.cad summary .day{
+  font-family:var(--fm);font-size:12px;color:var(--turq);
+  border:1px solid var(--line);border-radius:5px;padding:2px 7px;
+  font-variant-numeric:tabular-nums;
+}
+.cad summary b{font-weight:500;font-size:14.5px}
+.cad .body{padding:0 13px 13px;display:flex;flex-direction:column;gap:9px}
+.cad .body p{margin:0;font-size:13px;color:var(--ink-2)}
+
+/* services manager */
+.svc-list{display:flex;flex-direction:column;gap:7px;margin-top:11px}
+.svc-row{display:flex;gap:8px;align-items:center;background:var(--panel-2);border:1px solid var(--line-soft);border-radius:var(--r-sm);padding:7px 9px;flex-wrap:wrap}
+.svc-row .en{font-family:var(--fs);font-size:13.5px;flex:1 1 200px;direction:ltr;text-align:left}
+.svc-row .ar{font-size:13px;color:var(--ink-2);flex:1 1 170px}
+.svc-add{display:grid;grid-template-columns:1fr;gap:8px;margin-top:11px}
+@media (min-width:700px){.svc-add{grid-template-columns:1fr 1fr auto}}
+
+/* toasts */
+#toasts{position:fixed;inset-inline:0;bottom:16px;display:flex;flex-direction:column;align-items:center;gap:7px;pointer-events:none;z-index:60;padding:0 12px}
+.toast{
+  background:var(--panel);border:1px solid var(--turq);color:var(--ink);
+  border-radius:999px;padding:8px 15px;font-size:13.5px;
+  box-shadow:0 12px 30px -14px rgba(0,0,0,.6);
+  animation:pop .22s ease both;max-width:100%;
+}
+.toast.err{border-color:var(--bad)}
+.toast.wait{border-color:var(--blue)}
+@keyframes pop{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001s!important;transition-duration:.001s!important}
+}
+footer.foot{margin-top:30px;padding-top:14px;border-top:1px solid var(--line-soft);color:var(--ink-3);font-size:12px;line-height:1.7}
+</style>
+
+<div dir="rtl" id="root">
+
+<!-- ===================== password gate ===================== -->
+<div id="gate">
+  <div class="gate-card">
+    <div class="mark">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+        <circle cx="13" cy="13" r="3.2" fill="none" stroke="var(--turq)" stroke-width="1.6"/>
+        <path d="M6.5 6.5a9.2 9.2 0 0 0 0 13M19.5 6.5a9.2 9.2 0 0 1 0 13" fill="none" stroke="var(--blue)" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M2.6 2.6a14.7 14.7 0 0 0 0 20.8M23.4 2.6a14.7 14.7 0 0 1 0 20.8" fill="none" stroke="var(--blue)" stroke-width="1.2" stroke-linecap="round" opacity=".45"/>
+      </svg>
+      <b>Nouf Sales Message Studio</b>
+    </div>
+    <h1>أداة رسائل المبيعات</h1>
+    <p class="muted" style="margin:0">إنشاء وتعديل وترجمة رسائل واتساب وإيميلات احترافية لخدمات الإنترنت والاتصال والبنية التحتية التقنية.</p>
+    <form id="gateForm" autocomplete="off">
+      <div class="pw-row">
+        <input id="pw" type="password" inputmode="numeric" placeholder="كلمة المرور" aria-label="كلمة المرور" autocomplete="off">
+        <button type="button" class="btn" id="pwToggle" aria-pressed="false" style="min-width:78px">إظهار</button>
+      </div>
+      <div id="gateMsg" role="status" aria-live="polite"></div>
+      <button type="submit" class="btn primary" id="pwGo" style="width:100%;min-height:46px">فتح الأداة</button>
+    </form>
+    <p class="gate-note">
+      الحماية هنا محلية داخل المتصفح فقط، وهي لمنع الفتح العابر وليست حماية أمنية كاملة. لا تضعي في هذه الأداة بيانات عملاء حساسة أو أسعارًا سرية.
+    </p>
+  </div>
+</div>
+
+<!-- ===================== app ===================== -->
+<div id="app" hidden>
+  <div class="fiber"></div>
+  <header class="top">
+    <div class="top-in">
+      <svg width="24" height="24" viewBox="0 0 26 26" aria-hidden="true">
+        <circle cx="13" cy="13" r="3.2" fill="none" stroke="var(--turq)" stroke-width="1.6"/>
+        <path d="M6.5 6.5a9.2 9.2 0 0 0 0 13M19.5 6.5a9.2 9.2 0 0 1 0 13" fill="none" stroke="var(--blue)" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span class="who">
+        <b>Nouf Sales Message Studio</b>
+        <span id="whoLine">نوف | Caiperia Internet Services</span>
+      </span>
+      <span class="acts">
+        <button class="btn sm ghost" id="btnServices">الخدمات</button>
+        <button class="btn sm ghost" id="btnLogout">تسجيل الخروج</button>
+      </span>
+    </div>
+    <div class="patch"></div>
+  </header>
+
+  <div class="wrap">
+
+    <!-- ============ smart command bar ============ -->
+    <section id="cmdSection" style="margin-top:18px">
+      <div class="sec-head">
+        <p class="eyebrow">Smart Command Bar</p>
+        <h2>شريط الأوامر الذكي</h2>
+      </div>
+      <div class="card" id="cmdCard">
+        <div class="syntax">
+          القناة <b>–</b> اسم العميل <b>–</b> المطلوب <b>–</b> الخدمة (اختياري) <b>–</b> السياق (اختياري)
+        </div>
+        <div class="cmd-row">
+          <input id="cmdInput" type="text" placeholder="إيميل – عمر – تعريف بالشركة" aria-label="أمر إنشاء الرسالة" autocomplete="off" spellcheck="false">
+          <button class="btn primary" id="btnGen" style="min-height:52px;min-width:150px">Generate Message</button>
+          <button class="btn" id="btnLastCmd" style="min-height:52px">استخدم آخر أمر</button>
+        </div>
+        <div class="parse" id="parseBox" hidden aria-live="polite"></div>
+        <div class="chips" id="cmdExamples"></div>
+        <div id="recentWrap" hidden>
+          <p class="eyebrow" style="margin-top:14px">Recent Commands</p>
+          <div class="recent" id="recentList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ editor ============ -->
+    <section id="editorSection">
+      <div class="sec-head">
+        <p class="eyebrow">Message Editor</p>
+        <h2>محرر الرسائل</h2>
+        <span class="muted" id="edStatus"></span>
+      </div>
+      <div class="card" id="editorCard">
+        <div class="ed-title">
+          <h3 id="edName">التواصل لأول مرة</h3>
+          <span class="tag wa" id="edChannel">WhatsApp</span>
+          <span class="tag stage" id="edStage">Introduction</span>
+          <span class="saved-dot" id="edSavedDot" hidden><i></i> نسخة محفوظة</span>
+        </div>
+
+        <div class="fields" id="fields"></div>
+
+        <div class="subject-row" id="subjectRow" hidden>
+          <label class="fld">
+            <span>Subject</span>
+            <input id="subjBox" type="text" dir="ltr" style="text-align:left;font-family:var(--fs)">
+          </label>
+          <button class="btn" id="btnCopySubjEmail">نسخ Subject مع نص الإيميل</button>
+        </div>
+
+        <div class="cols">
+          <div class="col">
+            <div class="col-head">
+              <b>English</b>
+              <span class="count" id="enCount" dir="ltr">0 words | 0 chars</span>
+            </div>
+            <textarea id="enBox" dir="ltr" style="text-align:left" spellcheck="false" aria-label="النص الإنجليزي"></textarea>
+          </div>
+          <div class="col">
+            <div class="col-head">
+              <b>العربية</b>
+              <span class="count" id="arCount">0 حرف</span>
+            </div>
+            <textarea id="arBox" dir="rtl" spellcheck="false" aria-label="الترجمة العربية"></textarea>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn" id="btnCopyEn">Copy English</button>
+          <button class="btn" id="btnCopyAr">نسخ العربي</button>
+          <button class="btn turq" id="btnTranslate">Translate to Arabic</button>
+          <button class="btn" id="btnAi" hidden>تحسين بالذكاء الاصطناعي</button>
+          <span class="sep"></span>
+          <button class="btn" id="btnSave">حفظ النسخة المعدلة</button>
+          <button class="btn" id="btnRestore">استرجاع النسخة المحفوظة</button>
+          <button class="btn" id="btnReset">إعادة النص الأصلي</button>
+          <button class="btn" id="btnExport" hidden>تصدير Word</button>
+          <button class="btn danger sm" id="btnDelSaved" hidden>حذف النسخة المحفوظة</button>
+        </div>
+
+        <div class="notice" id="gtNotice" hidden></div>
+        <div class="hint" id="waHint"></div>
+        <label class="switch" style="margin-top:9px">
+          <input type="checkbox" id="autoTr"> ترجمة تلقائية بعد التوقف عن الكتابة
+        </label>
+      </div>
+    </section>
+
+    <!-- ============ library ============ -->
+    <section id="librarySection">
+      <div class="sec-head">
+        <p class="eyebrow">Message Library</p>
+        <h2>مكتبة الرسائل</h2>
+        <span class="muted" id="libCount"></span>
+      </div>
+      <div class="card filters">
+        <div class="row">
+          <input id="search" type="text" placeholder="ابحثي في السيناريوهات والرسائل" aria-label="بحث">
+          <select id="svcFilter" aria-label="فلترة حسب الخدمة"></select>
+        </div>
+        <div class="row grow" id="chFilter" role="group" aria-label="فلترة القناة">
+          <button class="chip" data-ch="all" aria-pressed="true">الكل</button>
+          <button class="chip" data-ch="wa" aria-pressed="false">WhatsApp</button>
+          <button class="chip" data-ch="em" aria-pressed="false">Email</button>
+        </div>
+        <div class="row grow" id="stFilter" role="group" aria-label="فلترة المرحلة"></div>
+      </div>
+
+      <div id="waBlock">
+        <div class="sec-head" style="margin-top:20px">
+          <p class="eyebrow">01 / WhatsApp</p>
+          <h2>رسائل واتساب</h2>
+        </div>
+        <div class="grid" id="waGrid"></div>
+      </div>
+
+      <div id="emBlock">
+        <div class="sec-head" style="margin-top:24px">
+          <p class="eyebrow">02 / Email</p>
+          <h2>قوالب الإيميل</h2>
+        </div>
+        <div class="grid" id="emGrid"></div>
+      </div>
+      <div class="empty" id="libEmpty" hidden>لا توجد نتائج مطابقة. جرّبي كلمة أخرى أو أزيلي الفلاتر.</div>
+    </section>
+
+    <!-- ============ cadence ============ -->
+    <section id="cadenceSection">
+      <div class="sec-head">
+        <p class="eyebrow">Sales Cadence</p>
+        <h2>تسلسل التواصل المقترح</h2>
+      </div>
+      <div class="cad" id="cadList"></div>
+      <p class="hint">الأداة لا ترسل أي رسالة تلقائيًا. الإرسال يتم منك يدويًا من واتساب أو الإيميل.</p>
+    </section>
+
+    <!-- ============ services ============ -->
+    <section id="servicesSection" hidden>
+      <div class="sec-head">
+        <p class="eyebrow">Approved Services</p>
+        <h2>خدمات Caiperia</h2>
+      </div>
+      <div class="card" style="padding:14px">
+        <p class="muted" style="margin:0">هذه القائمة هي المرجع الوحيد للخدمات في الرسائل. لا تُذكر أسعار أو تغطيات أو SLA أو شهادات، ولا أي خدمة خارج القائمة.</p>
+        <div class="svc-list" id="svcList"></div>
+        <div class="svc-add">
+          <input id="svcEn" type="text" dir="ltr" style="text-align:left;font-family:var(--fs)" placeholder="Service name (English)">
+          <input id="svcAr" type="text" placeholder="اسم الخدمة بالعربي">
+          <button class="btn" id="btnAddSvc">إضافة خدمة</button>
+        </div>
+        <div class="actions" style="margin-top:12px">
+          <button class="btn sm ghost" id="btnResetSvc">إرجاع القائمة الأصلية</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      Nouf Sales Message Studio | أداة عمل داخلية لـ Nouf, Caiperia Internet Services.<br>
+      التعديلات والنسخ المحفوظة والأوامر تُخزَّن محليًا في هذا المتصفح فقط. الحماية بكلمة المرور محلية وليست حماية أمنية كاملة.
+    </footer>
+  </div>
+</div>
+
+<div id="toasts" aria-live="polite" aria-atomic="false"></div>
+</div>
+
+<script>
+"use strict";
+/* =======================================================================
+   Nouf Sales Message Studio
+   ======================================================================= */
+
+/* ---------- tiny helpers ---------- */
+const $ = (id) => document.getElementById(id);
+const el = (tag, cls, txt) => { const n = document.createElement(tag); if (cls) n.className = cls; if (txt != null) n.textContent = txt; return n; };
+
+function toast(msg, kind) {
+  const t = el("div", "toast" + (kind ? " " + kind : ""), msg);
+  $("toasts").appendChild(t);
+  setTimeout(() => { t.style.opacity = "0"; t.style.transition = "opacity .25s"; setTimeout(() => t.remove(), 260); }, kind === "wait" ? 2600 : 1900);
+  return t;
+}
+function store(key, val) {
+  try {
+    if (val === undefined) { const raw = localStorage.getItem("nsms." + key); return raw ? JSON.parse(raw) : null; }
+    localStorage.setItem("nsms." + key, JSON.stringify(val)); return true;
+  } catch (e) { return val === undefined ? null : false; }
+}
+async function copyText(text) {
+  if (!text) return false;
+  try { if (navigator.clipboard) { await navigator.clipboard.writeText(text); return true; } } catch (e) {}
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", "");
+    ta.style.cssText = "position:fixed;top:-1200px;opacity:0";
+    document.body.appendChild(ta); ta.select();
+    const ok = document.execCommand("copy"); ta.remove(); return ok;
+  } catch (e) { return false; }
+}
+async function copyAndToast(text, okMsg) {
+  const ok = await copyText(text);
+  toast(ok ? (okMsg || "Copied Successfully") : "النسخ محجوب في هذا العرض. حددي النص وانسخيه يدويًا.", ok ? "" : "err");
+}
+
+/* ---------- arabic-friendly text normalisation + fuzzy match ---------- */
+function norm(s) {
+  return String(s || "")
+    .replace(/[ً-ْٰـ]/g, "")
+    .replace(/[آأإٱ]/g, "ا")
+    .replace(/ى/g, "ي").replace(/ة/g, "ه")
+    .replace(/ؤ/g, "و").replace(/ئ/g, "ي")
+    .replace(/[‌‍‎‏]/g, "")
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s]/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+function lev(a, b) {
+  if (a === b) return 0;
+  const m = a.length, n = b.length;
+  if (!m || !n) return m || n;
+  let prev = new Array(n + 1), cur = new Array(n + 1);
+  for (let j = 0; j <= n; j++) prev[j] = j;
+  for (let i = 1; i <= m; i++) {
+    cur[0] = i;
+    for (let j = 1; j <= n; j++) {
+      cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    }
+    const t = prev; prev = cur; cur = t;
+  }
+  return prev[n];
+}
+function sim(a, b) { const L = Math.max(a.length, b.length); return L ? 1 - lev(a, b) / L : 0; }
+/* score how well a free-text purpose matches a keyword list */
+function keyScore(text, keys) {
+  const t = norm(text); if (!t) return 0;
+  const tw = t.split(" ");
+  let best = 0;
+  for (const k of keys) {
+    const kk = norm(k); if (!kk) continue;
+    if (t === kk) { best = Math.max(best, 1); continue; }
+    if (t.includes(kk) || kk.includes(t)) { best = Math.max(best, 0.82 + Math.min(kk.length, 18) / 200); continue; }
+    const kw = kk.split(" ");
+    let hit = 0;
+    for (const w of kw) {
+      if (w.length < 3) continue;
+      for (const x of tw) { if (x === w || (x.length > 3 && sim(x, w) > 0.78)) { hit++; break; } }
+    }
+    const cov = kw.filter(w => w.length >= 3).length;
+    if (cov) best = Math.max(best, 0.72 * (hit / cov));
+    best = Math.max(best, sim(t, kk) * 0.7);
+  }
+  return best;
+}
+
+/* ---------- names: light arabic rendering for known names ---------- */
+const AR_NAMES = {
+  "nouf": "نوف", "umer": "عمر", "omar": "عمر", "umar": "عمر",
+  "abdulrahman": "عبدالرحمن", "abdulrahman alotaibi": "عبدالرحمن العتيبي",
+  "mr. abdulrahman": "الأستاذ عبدالرحمن", "mr abdulrahman": "الأستاذ عبدالرحمن",
+  "khalid": "خالد", "mohammed": "محمد", "mohamed": "محمد", "ahmed": "أحمد", "sara": "سارة", "fahad": "فهد"
+};
+function arName(s) {
+  const k = String(s || "").trim().toLowerCase();
+  if (!k) return "";
+  if (AR_NAMES[k]) return AR_NAMES[k];
+  const bare = k.replace(/^(mr\.?|ms\.?|mrs\.?|eng\.?|dr\.?)\s+/, "");
+  if (AR_NAMES[bare]) {
+    const t = k.startsWith("mr") ? "الأستاذ " : k.startsWith("ms") || k.startsWith("mrs") ? "الأستاذة " : k.startsWith("eng") ? "المهندس " : k.startsWith("dr") ? "الدكتور " : "";
+    return t + AR_NAMES[bare];
+  }
+  return String(s).trim();
+}
+const EN_NAMES = {};
+Object.keys(AR_NAMES).forEach(k => { const v = AR_NAMES[k]; if (!EN_NAMES[v]) EN_NAMES[v] = k.replace(/\b\w/g, c => c.toUpperCase()); });
+const AR_TITLE_PREFIX = [["الأستاذة","Ms. "],["الاستاذة","Ms. "],["الأستاذ","Mr. "],["الاستاذ","Mr. "],["المهندسة","Eng. "],["المهندس","Eng. "],["الدكتور","Dr. "],["الدكتورة","Dr. "]];
+/* render a name in latin script for the english message */
+function enName(s) {
+  let t = String(s || "").trim();
+  if (!t || !/[\u0600-\u06FF]/.test(t)) return t;
+  let pre = "";
+  for (const [ar, en] of AR_TITLE_PREFIX) { if (t.startsWith(ar)) { pre = en; t = t.slice(ar.length).trim(); break; } }
+  if (EN_NAMES[t]) return pre + EN_NAMES[t];
+  const w = t.split(/\s+/);
+  if (w.length > 1 && EN_NAMES[w[0]]) return pre + EN_NAMES[w[0]];
+  return pre + t;
+}
+const AR_TITLES = { "eng.": "م.", "eng": "م.", "engineer": "م.", "mr.": "الأستاذ", "mr": "الأستاذ", "ms.": "الأستاذة", "ms": "الأستاذة", "mrs.": "الأستاذة", "dr.": "د.", "dr": "د." };
+function arTitle(s) { const k = String(s || "").trim().toLowerCase(); return AR_TITLES[k] !== undefined ? AR_TITLES[k] : String(s || "").trim(); }
+
+/* =======================================================================
+   approved services
+   ======================================================================= */
+const SERVICES_DEFAULT = [
+  { id: "biz",       en: "Business Internet Solutions",              ar: "حلول إنترنت الأعمال" },
+  { id: "dia",       en: "Dedicated Internet Access",                ar: "إنترنت مخصص (Dedicated)" },
+  { id: "fiber",     en: "Fiber Internet Connections",               ar: "وصلات إنترنت بالألياف البصرية" },
+  { id: "links",     en: "Primary and Backup Internet Links",        ar: "خطوط إنترنت رئيسية واحتياطية" },
+  { id: "redund",    en: "Network Redundancy and Business Continuity",ar: "تكرار الشبكة واستمرارية الأعمال" },
+  { id: "branch",    en: "Branch and Site Connectivity",             ar: "ربط الفروع والمواقع" },
+  { id: "cabling",   en: "Structured Cabling",                       ar: "التمديدات المهيكلة" },
+  { id: "fiberinf",  en: "Fiber-Optic Infrastructure",               ar: "البنية التحتية للألياف البصرية" },
+  { id: "design",    en: "Network Design and Implementation",        ar: "تصميم وتنفيذ الشبكات" },
+  { id: "wifi",      en: "Wi-Fi and Wireless Network Solutions",     ar: "حلول الشبكات اللاسلكية والواي فاي" },
+  { id: "gear",      en: "Routers, Switches and Firewall Setup",     ar: "تجهيز الراوترات والسويتشات والجدار الناري" },
+  { id: "sdwan",     en: "SD-WAN, VPN and Secure Connectivity",      ar: "SD-WAN وVPN والاتصال الآمن" },
+  { id: "serverrm",  en: "Server Room and IT Infrastructure Setup",  ar: "تجهيز غرفة السيرفرات والبنية التحتية التقنية" },
+  { id: "managed",   en: "Managed Network Services",                 ar: "إدارة الشبكات كخدمة" },
+  { id: "support",   en: "Technical Support and Maintenance",        ar: "الدعم الفني والصيانة" },
+  { id: "survey",    en: "Site Surveys and Technical Assessments",   ar: "زيارات المواقع والتقييم الفني" },
+  { id: "newoffice", en: "New Office and Branch Setup",              ar: "تجهيز المكاتب والفروع الجديدة" },
+  { id: "custom",    en: "Customized Connectivity Solutions",        ar: "حلول اتصال مخصصة" }
+];
+const GENERIC_EN = "business internet, connectivity, and IT infrastructure solutions";
+const GENERIC_AR = "حلول إنترنت الأعمال والاتصال وتأسيس البنية التحتية التقنية";
+let SERVICES = store("services") || SERVICES_DEFAULT.slice();
+
+/* =======================================================================
+   message library: WhatsApp scenarios + Email templates
+   tokens: {{name}} {{title}} {{company}} {{sender}} {{senderCompany}}
+           {{svcEn}} {{svcAr}} {{refLine}} {{ctxLine}} {{askLine}} {{projectLine}}
+   a line that renders empty is dropped
+   ======================================================================= */
+const WA = [
+  {
+    id: "w1", stage: "Introduction", tags: ["biz", "dia", "fiber"],
+    name: "التواصل لأول مرة", desc: "أول رسالة لعميل جديد: تعريف قصير بك وبالشركة وطلب مكالمة.",
+    keys: ["تواصل اول مرة", "التواصل لأول مرة", "تعريف عني", "تعريف بالشركة", "تعريف", "اول رسالة", "first contact", "introduction", "intro", "cold outreach", "company introduction", "reach out"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "This is {{sender}} from {{senderCompany}}.",
+      "{{refLine}}",
+      "We provide {{svcEn}} for companies and projects, based on each site's actual requirements.",
+      "I would like to understand your current setup and whether you have any current or upcoming projects where we may support you.",
+      "{{ctxLine}}",
+      "{{askLine}}",
+      "Thank you,",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "أنا {{senderAr}} من شركة {{senderCompany}}.",
+      "{{refLineAr}}",
+      "نوفر {{svcAr}} للشركات والمشاريع، حسب احتياج كل موقع.",
+      "أرغب في معرفة وضع الاتصال الحالي لديكم، وهل لديكم مشاريع حالية أو قادمة يمكننا دعمكم فيها.",
+      "{{ctxLineAr}}",
+      "{{askLineAr}}",
+      "شكرًا لك،",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w2", stage: "Qualification", tags: [],
+    name: "العميل يطلب المزيد من التفاصيل", desc: "ردّ قصير يعطي صورة واضحة ويحوّل الحوار إلى الاحتياج.",
+    keys: ["يطلب تفاصيل", "تفاصيل اكثر", "المزيد من التفاصيل", "معلومات اكثر", "more details", "more info", "tell me more", "details"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "Happy to share more.",
+      "We work with companies on {{svcEn}}, from the internet link itself to the internal network and site infrastructure.",
+      "{{ctxLine}}",
+      "To give you something useful rather than general information, it helps to know the site type, the number of users, and whether this is a new setup or an existing one.",
+      "{{askLine}}",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "بكل سرور.",
+      "نعمل مع الشركات في {{svcAr}}، من خط الإنترنت نفسه إلى الشبكة الداخلية وتجهيز الموقع.",
+      "{{ctxLineAr}}",
+      "ولأعطيك معلومة مفيدة بدل كلام عام، يفيدني معرفة نوع الموقع وعدد المستخدمين، وهل التجهيز جديد أو قائم.",
+      "{{askLineAr}}",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w3", stage: "Qualification", tags: [],
+    name: "ما هي الخدمات التي تقدمونها؟", desc: "إجابة مرتبة على سؤال الخدمات بدون سرد القائمة كاملة.",
+    keys: ["ما هي الخدمات", "الخدمات التي تقدمونها", "وش خدماتكم", "استفسار عن الخدمات", "عرض خدمات", "عرض خدمات البنية التحتية", "what services", "what services do you provide", "services overview", "your services"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "In short, we cover three areas:",
+      "1) Internet and connectivity: business internet, dedicated access, fiber links, and primary or backup links.",
+      "2) Network and infrastructure: structured cabling, fiber-optic infrastructure, network design, Wi-Fi, and server room setup.",
+      "3) Ongoing side: managed network services, technical support, and maintenance.",
+      "{{ctxLine}}",
+      "Which of these is closest to what you need right now? I can then focus on the relevant part.",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "باختصار، نعمل في ثلاثة مجالات:",
+      "1) الإنترنت والاتصال: إنترنت الأعمال، الإنترنت المخصص، وصلات الألياف، والخطوط الرئيسية والاحتياطية.",
+      "2) الشبكات والبنية التحتية: التمديدات المهيكلة، الألياف البصرية، تصميم الشبكات، الواي فاي، وتجهيز غرفة السيرفرات.",
+      "3) الجانب المستمر: إدارة الشبكات، الدعم الفني، والصيانة.",
+      "{{ctxLineAr}}",
+      "أي جانب من هذه أقرب لاحتياجكم حاليًا؟ حتى أركز عليه.",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w4", stage: "Introduction", tags: [],
+    name: "طلب الملف التعريفي للشركة", desc: "عند طلب Company Profile: تأكيد الإرسال وطلب الإيميل.",
+    keys: ["الملف التعريفي", "ملف تعريفي", "بروفايل الشركة", "ارسال الملف التعريفي", "company profile", "profile", "send profile", "brochure"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "Of course. I will send our company profile so you have it on record.",
+      "May I have the best email address for it, or the email of the person who should receive it on your side?",
+      "{{ctxLine}}",
+      "If it is easier, I can also walk you through it in a short call and then send it.",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "بكل تأكيد. سأرسل لك الملف التعريفي للشركة ليكون لديك.",
+      "ممكن الإيميل المناسب لإرساله، أو إيميل الشخص المعني بالاستلام من جهتكم؟",
+      "{{ctxLineAr}}",
+      "وإذا كان أنسب، أستعرضه معك في مكالمة قصيرة ثم أرسله.",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w5", stage: "Qualification", tags: [],
+    name: "طلب إرسال التفاصيل على الإيميل", desc: "العميل يفضل الإيميل: تأكيد وطلب العنوان.",
+    keys: ["ارسلي على الايميل", "ارسال التفاصيل بالايميل", "على الايميل", "ابعثي ايميل", "send by email", "send it to my email", "email me the details"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "Noted, I will send everything by email.",
+      "Please share the email address, and I will send a short introduction with our company profile.",
+      "{{ctxLine}}",
+      "If you have a specific requirement in mind, tell me now and I will include the relevant part only.",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "تم، سأرسل كل شيء على الإيميل.",
+      "أرجو تزويدي بعنوان الإيميل وسأرسل تعريفًا قصيرًا مع الملف التعريفي.",
+      "{{ctxLineAr}}",
+      "وإذا كان لديك احتياج محدد، أخبرني الآن لأرسل الجزء المتعلق به فقط.",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w6", stage: "Qualification", tags: [],
+    name: "العميل أرسل عنوان إيميله", desc: "شكر قصير وتأكيد ما سيُرسل ومتى.",
+    keys: ["ارسل ايميله", "استلمت الايميل", "شكرا على الايميل", "email received", "got your email", "thanks for the email"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "Thank you, received.",
+      "I will send the introduction and our company profile today, addressed to you.",
+      "{{ctxLine}}",
+      "After you review it, {{askLineShort}}",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "شكرًا لك، وصلني.",
+      "سأرسل التعريف والملف التعريفي اليوم باسمك.",
+      "{{ctxLineAr}}",
+      "وبعد مراجعتك له، {{askLineShortAr}}",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w7", stage: "Meeting", tags: [],
+    name: "العميل يوافق على مكالمة أو اجتماع", desc: "تثبيت الموعد وتحديد نقاط النقاش.",
+    keys: ["موافق على مكالمة", "طلب موعد مكالمة", "تحديد موعد", "اجتماع", "موافقة على اجتماع", "meeting", "call", "schedule a call", "book a meeting", "agreed to meet"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "Thank you. {{askLine}}",
+      "It will take around 15 minutes. I would like to cover your current connectivity, any pain points, and upcoming projects or new sites.",
+      "{{ctxLine}}",
+      "If another time suits you better, send it and I will adjust.",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "شكرًا لك. {{askLineAr}}",
+      "المكالمة تحتاج حوالي 15 دقيقة، وأرغب أن نغطي وضع الاتصال الحالي، وأي ملاحظات لديكم، والمشاريع أو المواقع الجديدة القادمة.",
+      "{{ctxLineAr}}",
+      "وإذا كان هناك وقت أنسب، أرسله لي وأعدّل عليه.",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w8", stage: "Meeting", tags: [],
+    name: "العميل يقول: كلمني غدًا", desc: "تأكيد مهذب مع تثبيت وقت تقريبي.",
+    keys: ["كلمني غدا", "اتصلي غدا", "بكرة", "غدا", "call me tomorrow", "tomorrow", "later"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "Perfect, I will call you tomorrow.",
+      "Would the morning suit you better, or after 2 PM?",
+      "{{ctxLine}}",
+      "I will keep it short and to the point.",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "تمام، سأتواصل معك غدًا.",
+      "يناسبك الفترة الصباحية أو بعد الساعة 2 مساءً؟",
+      "{{ctxLineAr}}",
+      "وسأجعل المكالمة قصيرة ومباشرة.",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w9", stage: "Qualification", tags: [],
+    name: "العميل ليس الشخص المختص", desc: "شكر واعتذار قصير وطلب الاسم الصحيح.",
+    keys: ["ليس الشخص المختص", "مو انا المسؤول", "غير مختص", "not the right person", "wrong person", "not my department"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "Thank you for letting me know, and apologies for taking your time.",
+      "Could you point me to the right person for internet and network matters, or share their name so I can reach out directly?",
+      "{{ctxLine}}",
+      "I appreciate your help.",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "شكرًا لتوضيحك، وأعتذر على وقتك.",
+      "ممكن ترشدني للشخص المعني بأمور الإنترنت والشبكات، أو تزودني باسمه لأتواصل معه مباشرة؟",
+      "{{ctxLineAr}}",
+      "أشكر تعاونك.",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w10", stage: "Qualification", tags: [],
+    name: "طلب التحويل إلى IT أو المشتريات", desc: "طلب واضح للتحويل مع سبب مختصر.",
+    keys: ["تحويل الى قسم", "تحويل الى المشتريات", "تحويلي لمسؤول", "قسم تقنية المعلومات", "transfer to it", "procurement", "infrastructure team", "connect me with it"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "Thank you for your time.",
+      "Since this is related to internet links and network infrastructure, would you be able to connect me with the IT, Infrastructure, or Procurement contact on your side?",
+      "{{ctxLine}}",
+      "A name and an email are enough, and I will take it from there.",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "شكرًا لوقتك.",
+      "بما أن الموضوع متعلق بخطوط الإنترنت والبنية التحتية للشبكة، ممكن توصلني بالمسؤول في تقنية المعلومات أو البنية التحتية أو المشتريات لديكم؟",
+      "{{ctxLineAr}}",
+      "يكفيني اسم وإيميل وأكمل من جهتي.",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w11", stage: "Qualification", tags: ["links", "redund"],
+    name: "لدى العميل مزود إنترنت حالي", desc: "احترام الوضع الحالي وفتح باب المقارنة بدون ضغط.",
+    keys: ["لديه مزود حالي", "الرد على وجود مزود حالي", "عندنا مزود", "مزود حالي", "existing provider", "already have a provider", "we have isp"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "That is completely understandable, and most companies we work with already have a provider.",
+      "My aim is not to replace what is working. I would like to understand what you have today, so that when a renewal, a new site, or an expansion comes up, we are a ready option.",
+      "{{ctxLine}}",
+      "Is the current setup covering you well in terms of stability and support response?",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "هذا طبيعي، ومعظم الشركات التي نعمل معها لديها مزود بالفعل.",
+      "هدفي ليس استبدال شيء يعمل بشكل جيد، بل معرفة وضعكم الحالي، حتى نكون خيارًا جاهزًا عند التجديد أو عند موقع جديد أو توسعة.",
+      "{{ctxLineAr}}",
+      "هل الوضع الحالي مريح لكم من ناحية الاستقرار وسرعة الدعم؟",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w12", stage: "Qualification", tags: ["links", "redund", "sdwan"],
+    name: "تقديم Caiperia كمزود بديل أو خط احتياطي", desc: "طرح الخط الاحتياطي واستمرارية الأعمال كمدخل منطقي.",
+    keys: ["مزود بديل", "خط احتياطي", "باك اب", "استمرارية الاعمال", "backup link", "secondary link", "alternative provider", "redundancy", "business continuity"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "Understood. In that case, the practical option is a backup link alongside your main one.",
+      "It keeps the business running if the primary line goes down, and it also gives you a second reference point on service and response.",
+      "{{ctxLine}}",
+      "If it is useful, I can review your current setup with you and suggest a suitable backup arrangement.",
+      "{{askLine}}",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "واضح. في هذه الحالة الخيار العملي هو خط احتياطي بجانب الخط الرئيسي.",
+      "يحفظ استمرارية العمل عند انقطاع الخط الأساسي، ويعطيكم كذلك مرجعًا ثانيًا لمقارنة مستوى الخدمة وسرعة الاستجابة.",
+      "{{ctxLineAr}}",
+      "وإذا كان مفيدًا، أستعرض معك الوضع الحالي وأقترح ترتيبًا مناسبًا للخط الاحتياطي.",
+      "{{askLineAr}}",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w13", stage: "Follow-Up", tags: [],
+    name: "لا يوجد احتياج حالي", desc: "إغلاق مهذب مع الحفاظ على الباب مفتوحًا.",
+    keys: ["لا يوجد احتياج", "ما عندنا احتياج", "مو محتاجين حاليا", "no need", "not now", "no requirement", "maybe later"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "Thank you for the clarity, that is helpful.",
+      "I will not keep following up. I will only reach out when there is something relevant, such as a new site or an expansion on your side.",
+      "{{ctxLine}}",
+      "If anything comes up before that, I am one message away.",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "شكرًا لوضوحك، هذا يفيدني.",
+      "لن أكرر المتابعة، وسأتواصل فقط عند وجود شيء ذي علاقة، مثل موقع جديد أو توسعة لديكم.",
+      "{{ctxLineAr}}",
+      "وإذا استجد أي شيء قبل ذلك، أنا على بُعد رسالة.",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w14", stage: "Qualification", tags: ["branch", "newoffice"],
+    name: "لدى العميل مشروع أو فرع جديد", desc: "الانتقال من الاهتمام إلى تفاصيل المشروع.",
+    keys: ["مشروع جديد", "فرع جديد", "توسعة", "افتتاح فرع", "new project", "new branch", "new site", "expansion", "opening a branch"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "That is good to hear, and this is exactly where we can add value early.",
+      "For a new {{projectWord}}, the things that matter first are the location, the expected number of users, the target readiness date, and whether the cabling and network are part of the scope.",
+      "{{ctxLine}}",
+      "If you share these, I will come back with a suitable connectivity and infrastructure approach.",
+      "{{askLine}}",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "خبر جيد، وهذا بالتحديد ما نضيف فيه قيمة من البداية.",
+      "بالنسبة للـ{{projectWordAr}} الجديد، الأمور المهمة أولًا هي الموقع، وعدد المستخدمين المتوقع، وتاريخ الجاهزية المستهدف، وهل التمديدات والشبكة داخل النطاق.",
+      "{{ctxLineAr}}",
+      "إذا زودتني بهذه المعلومات، أرجع لك بمقترح مناسب للاتصال والبنية التحتية.",
+      "{{askLineAr}}",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w15", stage: "Qualification", tags: ["cabling", "fiberinf", "design", "serverrm", "newoffice"],
+    name: "تأسيس بنية تحتية من الصفر", desc: "موقع جديد بالكامل: ترتيب الخطوات الأولى.",
+    keys: ["تأسيس بنية تحتية", "بنية تحتية من الصفر", "من الصفر", "تجهيز موقع جديد", "تاسيس", "infrastructure from scratch", "greenfield", "new setup", "build from zero", "it infrastructure setup"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "We handle this type of work from the ground up: structured cabling, fiber-optic infrastructure, network design and implementation, Wi-Fi, and server room setup, with the internet links delivered on the same plan.",
+      "{{ctxLine}}",
+      "The first step is usually a site visit to check the layout, the entry points, and the room allocated for the equipment.",
+      "Would you like me to arrange a site survey with our technical team?",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "هذا النوع من الأعمال نتولاه من الأساس: التمديدات المهيكلة، الألياف البصرية، تصميم وتنفيذ الشبكة، الواي فاي، وتجهيز غرفة السيرفرات، مع خطوط الإنترنت داخل نفس الخطة.",
+      "{{ctxLineAr}}",
+      "والخطوة الأولى عادة زيارة موقع لمعاينة المخطط ونقاط الدخول والغرفة المخصصة للأجهزة.",
+      "هل ترغب أن أرتب زيارة موقع مع الفريق الفني؟",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w16", stage: "Proposal", tags: ["survey"],
+    name: "طلب زيارة موقع (Site Survey)", desc: "تنسيق زيارة الموقع وتحديد المطلوب لها.",
+    keys: ["زيارة موقع", "طلب زيارة موقع", "معاينة", "سايت سيرفي", "site survey", "site visit", "survey", "technical assessment"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "Happy to arrange a site survey.",
+      "I need three things: the site address, a suitable day and time, and the name of the person who will receive our team on site.",
+      "{{ctxLine}}",
+      "The visit is short. The team checks the layout, the entry points, and the equipment room, then we come back with a clear technical picture.",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "بكل سرور أرتب زيارة الموقع.",
+      "أحتاج ثلاثة أمور: عنوان الموقع، واليوم والوقت المناسب، واسم الشخص الذي سيستقبل الفريق في الموقع.",
+      "{{ctxLineAr}}",
+      "الزيارة قصيرة، ويعاين الفريق المخطط ونقاط الدخول وغرفة الأجهزة، ثم نرجع لكم بصورة فنية واضحة.",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w17", stage: "Proposal", tags: [],
+    name: "طلب عرض فني أو مالي", desc: "ما نحتاجه قبل إعداد العرض، بدون وعود.",
+    keys: ["عرض فني", "عرض مالي", "عرض سعر", "متابعة العرض الفني", "طلب عرض", "technical proposal", "quotation", "quote", "commercial offer", "proposal"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "Noted. To prepare an accurate proposal rather than a generic one, I need the site address, the required service, the expected number of users or devices, and the target start date.",
+      "{{ctxLine}}",
+      "Once I have these, I will coordinate internally and come back to you with the technical and commercial proposal.",
+      "If a site visit is needed first, I will arrange it.",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "تم. ولإعداد عرض دقيق بدل عرض عام، أحتاج عنوان الموقع، والخدمة المطلوبة، وعدد المستخدمين أو الأجهزة المتوقع، وتاريخ البدء المستهدف.",
+      "{{ctxLineAr}}",
+      "وبمجرد توفرها، أنسّق داخليًا وأرجع لك بالعرض الفني والمالي.",
+      "وإذا احتاج الأمر زيارة موقع أولًا، أرتبها.",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w18", stage: "Proposal", tags: [],
+    name: "السؤال عن الأسعار قبل المتطلبات", desc: "تحويل سؤال السعر إلى متطلبات، بدون ذكر أرقام.",
+    keys: ["سؤال عن السعر", "كم السعر", "الاسعار", "بكم", "price", "pricing", "how much", "cost", "rates"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "A fair question, and I prefer not to give a number that later turns out to be wrong for your case.",
+      "Pricing depends on the site, the service type, the capacity, and the scope of work.",
+      "{{ctxLine}}",
+      "Send me the site location, the service you need, and the expected number of users, and I will come back with a proper proposal instead of an estimate.",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "سؤال منطقي، وأفضّل ألا أعطيك رقمًا يتغير لاحقًا ولا يناسب حالتكم.",
+      "السعر يعتمد على الموقع ونوع الخدمة والسعة ونطاق العمل.",
+      "{{ctxLineAr}}",
+      "أرسل لي موقع الموقع، والخدمة المطلوبة، وعدد المستخدمين المتوقع، وأرجع لك بعرض نظامي بدل تقدير تقريبي.",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w19", stage: "Proposal", tags: [],
+    name: "طلب التسجيل كمورد", desc: "طلب متطلبات التسجيل في نظام الموردين.",
+    keys: ["تسجيل مورد", "التسجيل كمورد", "اضافة مورد", "vendor registration", "supplier registration", "register as vendor", "prequalification"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "We would like to be registered as a supplier with you.",
+      "Could you share the registration requirements and the form, or the email of the vendor registration contact?",
+      "{{ctxLine}}",
+      "We will prepare the company documents and send them complete in one submission.",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "نرغب في التسجيل كمورد لديكم.",
+      "ممكن تزودني بمتطلبات التسجيل والنموذج، أو إيميل المسؤول عن تسجيل الموردين؟",
+      "{{ctxLineAr}}",
+      "وسنجهّز مستندات الشركة ونرسلها كاملة في مرة واحدة.",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w20", stage: "Follow-Up", tags: [],
+    name: "متابعة بعد يومين بدون رد", desc: "متابعة خفيفة تعيد فتح الحوار بسؤال واحد.",
+    keys: ["متابعة بعد يومين", "متابعة بدون رد", "متابعة", "تذكير", "follow up", "follow-up", "no reply", "checking in"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "Following up on my earlier message about {{svcEn}}.",
+      "{{ctxLine}}",
+      "Is this something worth a short call, or is the timing not right at the moment?",
+      "Either answer is fine, it just helps me know how to follow up properly.",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "أتابع رسالتي السابقة بخصوص {{svcAr}}.",
+      "{{ctxLineAr}}",
+      "هل الموضوع يستحق مكالمة قصيرة، أو الوقت غير مناسب حاليًا؟",
+      "أي إجابة مناسبة، فقط تساعدني أعرف كيف أتابع بشكل صحيح.",
+      "{{senderAr}}"
+    ]
+  },
+  {
+    id: "w21", stage: "Follow-Up", tags: [],
+    name: "المتابعة الأخيرة بدون ضغط", desc: "إغلاق الملف بأدب مع ترك الباب مفتوحًا.",
+    keys: ["متابعة اخيرة", "اغلاق المتابعة بادب", "اخر متابعة", "last follow up", "final follow up", "closing politely", "last message"],
+    en: [
+      "Hello {{title}} {{name}},",
+      "This is my last message on this so I do not crowd your inbox.",
+      "I will close the follow-up from my side, and I remain available whenever a project, a new site, or a renewal comes up.",
+      "{{ctxLine}}",
+      "Thank you for your time, and I wish you continued success.",
+      "{{sender}}"
+    ],
+    ar: [
+      "مرحبًا {{titleAr}} {{nameAr}}،",
+      "هذه آخر رسالة مني في الموضوع حتى لا أزعجك.",
+      "سأغلق المتابعة من جهتي، وأبقى متاحة عند وجود مشروع أو موقع جديد أو تجديد.",
+      "{{ctxLineAr}}",
+      "شكرًا لوقتك، وأتمنى لكم استمرار النجاح.",
+      "{{senderAr}}"
+    ]
+  }
+];
+
+const EM = [
+  {
+    id: "e1", stage: "Introduction", tags: ["biz", "dia", "fiber"],
+    name: "إيميل التعريف", desc: "التعريف الأول: أنت، الشركة، الهدف، وطلب مكالمة قصيرة.",
+    keys: ["تعريف بالشركة", "تعريف عني", "ايميل تعريف", "تعريف", "introduction email", "company introduction", "intro email", "first email"],
+    subject: "Introduction | {{senderCompany}}",
+    subjectAr: "تعريف | {{senderCompany}}",
+    en: [
+      "Dear {{title}} {{name}},",
+      "This is {{sender}} from {{senderCompany}}.",
+      "{{refLine}}",
+      "We provide {{svcEn}} tailored to each organization's operational requirements.",
+      "{{ctxLine}}",
+      "I would be pleased to briefly introduce our services and understand whether you have any current or upcoming projects where we may support you.",
+      "{{askLine}}",
+      "Best regards,",
+      "{{sender}}",
+      "{{senderCompany}}"
+    ],
+    ar: [
+      "عزيزي {{titleAr}} {{nameAr}}،",
+      "أنا {{senderAr}} من شركة {{senderCompany}}.",
+      "{{refLineAr}}",
+      "نوفر {{svcAr}} بما يتناسب مع الاحتياج التشغيلي لكل جهة.",
+      "{{ctxLineAr}}",
+      "ويسعدني أن أعرّفكم باختصار على خدماتنا، وأن أعرف إن كان لديكم مشاريع حالية أو قادمة يمكننا دعمكم فيها.",
+      "{{askLineAr}}",
+      "مع التحية،",
+      "{{senderAr}}",
+      "{{senderCompany}}"
+    ]
+  },
+  {
+    id: "e2", stage: "Introduction", tags: [],
+    name: "إيميل بعد التواصل على واتساب", desc: "تثبيت ما تم في واتساب كتابيًا.",
+    keys: ["بعد الواتساب", "متابعة الواتساب", "بعد التواصل واتساب", "after whatsapp", "as discussed on whatsapp", "following our chat"],
+    subject: "Following our WhatsApp conversation | {{senderCompany}}",
+    subjectAr: "متابعة لمحادثتنا على واتساب | {{senderCompany}}",
+    en: [
+      "Dear {{title}} {{name}},",
+      "Thank you for your time on WhatsApp earlier.",
+      "As promised, here is a short summary in writing. We provide {{svcEn}}, and my aim is to understand your current setup and any upcoming requirements.",
+      "{{ctxLine}}",
+      "Our company profile is attached for your reference.",
+      "{{askLine}}",
+      "Best regards,",
+      "{{sender}}",
+      "{{senderCompany}}"
+    ],
+    ar: [
+      "عزيزي {{titleAr}} {{nameAr}}،",
+      "شكرًا لوقتك في محادثة واتساب.",
+      "وكما وعدتك، هذا ملخص مكتوب. نوفر {{svcAr}}، وهدفي أن أفهم وضعكم الحالي وأي احتياج قادم لديكم.",
+      "{{ctxLineAr}}",
+      "ومرفق الملف التعريفي للشركة للاطلاع.",
+      "{{askLineAr}}",
+      "مع التحية،",
+      "{{senderAr}}",
+      "{{senderCompany}}"
+    ]
+  },
+  {
+    id: "e3", stage: "Introduction", tags: [],
+    name: "إرسال الملف التعريفي", desc: "إرسال Company Profile مع سطر يوضح الخطوة التالية.",
+    keys: ["ارسال الملف التعريفي", "الملف التعريفي", "بروفايل", "company profile", "profile submission", "send company profile"],
+    subject: "{{senderCompany}} | Company Profile",
+    subjectAr: "{{senderCompany}} | الملف التعريفي",
+    en: [
+      "Dear {{title}} {{name}},",
+      "Please find attached the company profile of {{senderCompany}}.",
+      "It covers our scope in {{svcEn}}, along with the type of projects we deliver.",
+      "{{ctxLine}}",
+      "If you would like, I can walk you through the parts relevant to your operation in a short call.",
+      "{{askLine}}",
+      "Best regards,",
+      "{{sender}}",
+      "{{senderCompany}}"
+    ],
+    ar: [
+      "عزيزي {{titleAr}} {{nameAr}}،",
+      "مرفق الملف التعريفي لشركة {{senderCompany}}.",
+      "ويشمل نطاق عملنا في {{svcAr}}، مع نوع المشاريع التي ننفذها.",
+      "{{ctxLineAr}}",
+      "وإذا رغبت، أستعرض معك في مكالمة قصيرة الأجزاء المتعلقة بعملكم.",
+      "{{askLineAr}}",
+      "مع التحية،",
+      "{{senderAr}}",
+      "{{senderCompany}}"
+    ]
+  },
+  {
+    id: "e4", stage: "Qualification", tags: [],
+    name: "إيميل عرض الخدمات", desc: "عرض منظم للخدمات في ثلاث مجموعات، مع سؤال ختامي.",
+    keys: ["عرض خدمات", "عرض الخدمات", "عرض خدمات البنية التحتية", "الخدمات", "services overview", "our services", "service list"],
+    subject: "Services Overview | {{senderCompany}}",
+    subjectAr: "نظرة عامة على الخدمات | {{senderCompany}}",
+    en: [
+      "Dear {{title}} {{name}},",
+      "As requested, here is an overview of what we deliver.",
+      "Internet and connectivity: business internet solutions, dedicated internet access, fiber connections, primary and backup links, network redundancy and business continuity, branch and site connectivity.",
+      "Networks and infrastructure: structured cabling, fiber-optic infrastructure, network design and implementation, Wi-Fi and wireless solutions, routers, switches and firewall setup, SD-WAN, VPN and secure connectivity, server room and IT infrastructure setup.",
+      "Ongoing services: managed network services, technical support and maintenance, site surveys and technical assessments, new office and branch setup, customized connectivity solutions.",
+      "{{ctxLine}}",
+      "Which of these areas is most relevant to you at the moment? I will focus the next step on it.",
+      "{{askLine}}",
+      "Best regards,",
+      "{{sender}}",
+      "{{senderCompany}}"
+    ],
+    ar: [
+      "عزيزي {{titleAr}} {{nameAr}}،",
+      "بناءً على طلبك، هذه نظرة عامة على ما نقدمه.",
+      "الإنترنت والاتصال: حلول إنترنت الأعمال، الإنترنت المخصص، وصلات الألياف البصرية، الخطوط الرئيسية والاحتياطية، تكرار الشبكة واستمرارية الأعمال، ربط الفروع والمواقع.",
+      "الشبكات والبنية التحتية: التمديدات المهيكلة، البنية التحتية للألياف البصرية، تصميم وتنفيذ الشبكات، حلول الواي فاي واللاسلكي، تجهيز الراوترات والسويتشات والجدار الناري، SD-WAN وVPN والاتصال الآمن، تجهيز غرفة السيرفرات والبنية التحتية التقنية.",
+      "الخدمات المستمرة: إدارة الشبكات كخدمة، الدعم الفني والصيانة، زيارات المواقع والتقييم الفني، تجهيز المكاتب والفروع الجديدة، حلول اتصال مخصصة.",
+      "{{ctxLineAr}}",
+      "أي مجال من هذه أقرب لاحتياجكم حاليًا؟ لأركّز عليه في الخطوة القادمة.",
+      "{{askLineAr}}",
+      "مع التحية،",
+      "{{senderAr}}",
+      "{{senderCompany}}"
+    ]
+  },
+  {
+    id: "e5", stage: "Meeting", tags: [],
+    name: "طلب اجتماع أو مكالمة", desc: "طلب موعد مع أجندة واضحة ومختصرة.",
+    keys: ["طلب اجتماع", "طلب موعد مكالمة", "طلب مكالمة", "اجتماع", "meeting request", "request a call", "schedule a meeting", "short call"],
+    subject: "Request for a short call | {{senderCompany}}",
+    subjectAr: "طلب مكالمة قصيرة | {{senderCompany}}",
+    en: [
+      "Dear {{title}} {{name}},",
+      "I would like to request a short call, around 15 minutes, at a time that suits you.",
+      "{{ctxLine}}",
+      "The points I would like to cover: your current internet and network setup, any operational issues you face, and upcoming projects or new sites.",
+      "{{askLine}}",
+      "Best regards,",
+      "{{sender}}",
+      "{{senderCompany}}"
+    ],
+    ar: [
+      "عزيزي {{titleAr}} {{nameAr}}،",
+      "أرغب في طلب مكالمة قصيرة، حوالي 15 دقيقة، في الوقت المناسب لك.",
+      "{{ctxLineAr}}",
+      "والنقاط التي أرغب في تغطيتها: وضع الإنترنت والشبكة الحالي لديكم، وأي ملاحظات تشغيلية تواجهكم، والمشاريع أو المواقع الجديدة القادمة.",
+      "{{askLineAr}}",
+      "مع التحية،",
+      "{{senderAr}}",
+      "{{senderCompany}}"
+    ]
+  },
+  {
+    id: "e6", stage: "Meeting", tags: [],
+    name: "تأكيد الاجتماع", desc: "تثبيت الموعد والأجندة والحضور.",
+    keys: ["تأكيد الاجتماع", "تاكيد موعد", "تثبيت الاجتماع", "meeting confirmation", "confirm meeting", "confirmed"],
+    subject: "Meeting confirmation | {{senderCompany}}",
+    subjectAr: "تأكيد الاجتماع | {{senderCompany}}",
+    en: [
+      "Dear {{title}} {{name}},",
+      "Thank you for confirming. {{askLineConfirm}}",
+      "Agenda: your current setup, requirements and priorities, and the suitable next step from our side.",
+      "{{ctxLine}}",
+      "If you would like a technical colleague to join, I will arrange it.",
+      "Best regards,",
+      "{{sender}}",
+      "{{senderCompany}}"
+    ],
+    ar: [
+      "عزيزي {{titleAr}} {{nameAr}}،",
+      "شكرًا لتأكيدك. {{askLineConfirmAr}}",
+      "الأجندة: وضعكم الحالي، والمتطلبات والأولويات، والخطوة التالية المناسبة من جهتنا.",
+      "{{ctxLineAr}}",
+      "وإذا رغبت بحضور زميل فني، أرتب ذلك.",
+      "مع التحية،",
+      "{{senderAr}}",
+      "{{senderCompany}}"
+    ]
+  },
+  {
+    id: "e7", stage: "Proposal", tags: ["survey"],
+    name: "طلب زيارة موقع", desc: "تنسيق Site Survey كتابيًا مع المتطلبات.",
+    keys: ["طلب زيارة موقع", "زيارة موقع", "معاينة الموقع", "site survey request", "site visit", "survey request"],
+    subject: "Site survey request | {{senderCompany}}",
+    subjectAr: "طلب زيارة موقع | {{senderCompany}}",
+    en: [
+      "Dear {{title}} {{name}},",
+      "To move forward accurately, I would like to arrange a site survey with our technical team.",
+      "We will need the site address, a suitable date and time, and the name and number of the person who will receive the team on site.",
+      "{{ctxLine}}",
+      "The visit is short. The team reviews the layout, entry points, and equipment room, then we return with a clear technical picture.",
+      "{{askLine}}",
+      "Best regards,",
+      "{{sender}}",
+      "{{senderCompany}}"
+    ],
+    ar: [
+      "عزيزي {{titleAr}} {{nameAr}}،",
+      "للتقدم بشكل دقيق، أرغب في ترتيب زيارة موقع مع الفريق الفني.",
+      "ونحتاج عنوان الموقع، والتاريخ والوقت المناسب، واسم ورقم الشخص الذي سيستقبل الفريق في الموقع.",
+      "{{ctxLineAr}}",
+      "الزيارة قصيرة، ويراجع الفريق المخطط ونقاط الدخول وغرفة الأجهزة، ثم نرجع لكم بصورة فنية واضحة.",
+      "{{askLineAr}}",
+      "مع التحية،",
+      "{{senderAr}}",
+      "{{senderCompany}}"
+    ]
+  },
+  {
+    id: "e8", stage: "Proposal", tags: [],
+    name: "متابعة العرض الفني", desc: "متابعة عرض مرسل، مع سؤال عن الملاحظات.",
+    keys: ["متابعة العرض الفني", "متابعة العرض", "متابعة عرض", "technical proposal follow-up", "proposal follow up", "following up on our proposal"],
+    subject: "Follow-up on our proposal | {{senderCompany}}",
+    subjectAr: "متابعة العرض المرسل | {{senderCompany}}",
+    en: [
+      "Dear {{title}} {{name}},",
+      "I hope you are doing well. I am following up on the proposal we submitted.",
+      "{{ctxLine}}",
+      "Do you have any technical or commercial comments? If any point needs adjustment, tell me and I will revise it with the team.",
+      "{{askLine}}",
+      "Best regards,",
+      "{{sender}}",
+      "{{senderCompany}}"
+    ],
+    ar: [
+      "عزيزي {{titleAr}} {{nameAr}}،",
+      "أتمنى أن تكون بخير. أتابع بخصوص العرض الذي أرسلناه.",
+      "{{ctxLineAr}}",
+      "هل لديكم أي ملاحظات فنية أو مالية؟ وإذا احتاج أي بند تعديلًا، أخبرني لأراجعه مع الفريق.",
+      "{{askLineAr}}",
+      "مع التحية،",
+      "{{senderAr}}",
+      "{{senderCompany}}"
+    ]
+  },
+  {
+    id: "e9", stage: "Proposal", tags: [],
+    name: "طلب التسجيل كمورد", desc: "طلب رسمي للتسجيل في نظام الموردين.",
+    keys: ["تسجيل مورد", "التسجيل كمورد", "vendor registration", "supplier registration request", "register as a vendor"],
+    subject: "Vendor registration request | {{senderCompany}}",
+    subjectAr: "طلب التسجيل كمورد | {{senderCompany}}",
+    en: [
+      "Dear {{title}} {{name}},",
+      "{{senderCompany}} would like to be registered as an approved supplier with your organization.",
+      "Our scope covers {{svcEn}}.",
+      "{{ctxLine}}",
+      "Could you share the registration requirements and the form, or direct me to the responsible contact? We will submit the company documents complete in one package.",
+      "Best regards,",
+      "{{sender}}",
+      "{{senderCompany}}"
+    ],
+    ar: [
+      "عزيزي {{titleAr}} {{nameAr}}،",
+      "ترغب شركة {{senderCompany}} في التسجيل كمورد معتمد لديكم.",
+      "ونطاق عملنا يشمل {{svcAr}}.",
+      "{{ctxLineAr}}",
+      "ممكن تزويدي بمتطلبات التسجيل والنموذج، أو إرشادي للمسؤول المعني؟ وسنرسل مستندات الشركة كاملة في حزمة واحدة.",
+      "مع التحية،",
+      "{{senderAr}}",
+      "{{senderCompany}}"
+    ]
+  },
+  {
+    id: "e10", stage: "Follow-Up", tags: [],
+    name: "متابعة عامة", desc: "متابعة مهذبة بعد عدم الرد، بسؤال واحد واضح.",
+    keys: ["متابعة", "متابعة عامة", "تذكير", "بدون رد", "general follow-up", "follow up", "checking in", "gentle reminder"],
+    subject: "Follow-up | {{senderCompany}}",
+    subjectAr: "متابعة | {{senderCompany}}",
+    en: [
+      "Dear {{title}} {{name}},",
+      "I am following up on my previous email regarding {{svcEn}}.",
+      "{{ctxLine}}",
+      "Is this something worth a short call, or is the timing not suitable at the moment? Either answer helps me follow up appropriately.",
+      "Best regards,",
+      "{{sender}}",
+      "{{senderCompany}}"
+    ],
+    ar: [
+      "عزيزي {{titleAr}} {{nameAr}}،",
+      "أتابع إيميلي السابق بخصوص {{svcAr}}.",
+      "{{ctxLineAr}}",
+      "هل الموضوع يستحق مكالمة قصيرة، أو الوقت غير مناسب حاليًا؟ أي إجابة تساعدني في المتابعة بشكل مناسب.",
+      "مع التحية،",
+      "{{senderAr}}",
+      "{{senderCompany}}"
+    ]
+  },
+  {
+    id: "e11", stage: "Follow-Up", tags: [],
+    name: "المتابعة الأخيرة بأدب", desc: "إغلاق الملف كتابيًا مع ترك الباب مفتوحًا.",
+    keys: ["متابعة اخيرة", "اغلاق المتابعة بادب", "اخر ايميل", "final follow-up", "last follow up", "closing the loop"],
+    subject: "Closing the follow-up | {{senderCompany}}",
+    subjectAr: "إغلاق المتابعة | {{senderCompany}}",
+    en: [
+      "Dear {{title}} {{name}},",
+      "This is my final follow-up on this matter, so I do not crowd your inbox.",
+      "I will close it from my side, and we remain available whenever a project, a new site, or a renewal comes up.",
+      "{{ctxLine}}",
+      "Thank you for your time, and I wish you continued success.",
+      "Best regards,",
+      "{{sender}}",
+      "{{senderCompany}}"
+    ],
+    ar: [
+      "عزيزي {{titleAr}} {{nameAr}}،",
+      "هذه متابعتي الأخيرة في الموضوع، حتى لا أزعجك.",
+      "سأغلقه من جهتي، ونبقى متاحين عند وجود مشروع أو موقع جديد أو تجديد.",
+      "{{ctxLineAr}}",
+      "شكرًا لوقتك، وأتمنى لكم استمرار النجاح.",
+      "مع التحية،",
+      "{{senderAr}}",
+      "{{senderCompany}}"
+    ]
+  }
+];
+
+const ALL = WA.map(x => ({ ...x, ch: "wa" })).concat(EM.map(x => ({ ...x, ch: "em" })));
+const byId = (id) => ALL.find(x => x.id === id);
+const STAGES = ["Introduction", "Qualification", "Meeting", "Proposal", "Follow-Up"];
+const STAGE_AR = { "Introduction": "تعريف", "Qualification": "استكشاف", "Meeting": "اجتماع", "Proposal": "عرض", "Follow-Up": "متابعة" };
+
+const CADENCE = [
+  { day: "Day 1", label: "الرسالة الأولى على واتساب", ref: "w1", note: "افتحي الحوار بتعريف قصير وطلب مكالمة. لا تسردي كل الخدمات." },
+  { day: "Day 2", label: "إيميل التعريف", ref: "e1", note: "ثبّتي التعريف كتابيًا مع الملف التعريفي." },
+  { day: "Day 4", label: "متابعة على واتساب", ref: "w20", note: "سؤال واحد واضح يعيد فتح الحوار." },
+  { day: "Day 7", label: "متابعة على الإيميل", ref: "e10", note: "متابعة مهذبة بدون تكرار نفس الصياغة." },
+  { day: "Day 10", label: "المتابعة الأخيرة", ref: "e11", note: "إغلاق الملف بأدب مع ترك الباب مفتوحًا." }
+];
+
+/* =======================================================================
+   fields + rendering engine
+   ======================================================================= */
+const FIELD_DEFS = [
+  { k: "name", label: "Recipient Name", ar: "اسم العميل", def: "Umer" },
+  { k: "title", label: "Recipient Title", ar: "اللقب", def: "Eng." },
+  { k: "company", label: "Recipient Company", ar: "شركة العميل", def: "" },
+  { k: "sender", label: "Sender Name", ar: "اسمك", def: "Nouf" },
+  { k: "senderCompany", label: "Sender Company", ar: "شركتك", def: "Caiperia Internet Services" },
+  { k: "referral", label: "Referral Name", ar: "من رشّح التواصل", def: "Mr. Abdulrahman" },
+  { k: "service", label: "Required Service", ar: "الخدمة المطلوبة", def: "", type: "select" },
+  { k: "project", label: "Project Type", ar: "نوع المشروع", def: "" },
+  { k: "time", label: "Proposed Meeting Time", ar: "الوقت المقترح", def: "" },
+  { k: "context", label: "Additional Context", ar: "سياق إضافي", def: "" }
+];
+
+let F = store("fields") || {};
+FIELD_DEFS.forEach(f => { if (F[f.k] === undefined) F[f.k] = f.def; });
+
+let saved = store("saved") || {};        /* id -> {subject, en, ar} */
+let recent = store("recent") || [];
+let active = null;                        /* {id, ch} */
+let dirty = false;                        /* manual edits present */
+let lastVals = {};                        /* field values used in the last render */
+
+function pairTag(cls, en, ar) {
+  const s = el("span", cls);
+  const a = document.createElement("bdi"); a.textContent = en;
+  const b = document.createElement("bdi"); b.textContent = ar;
+  s.appendChild(a); s.appendChild(b);
+  return s;
+}
+function setPair(node, en, ar) {
+  node.textContent = "";
+  const a = document.createElement("bdi"); a.textContent = en;
+  const b = document.createElement("bdi"); b.textContent = ar;
+  node.appendChild(a); node.appendChild(b);
+}
+function svcById(id) { return SERVICES.find(s => s.id === id); }
+function serviceText() {
+  const s = svcById(F.service);
+  return { en: s ? s.en : GENERIC_EN, ar: s ? s.ar : GENERIC_AR };
+}
+function projectWord() {
+  const p = String(F.project || "").trim();
+  if (!p) return { en: "site", ar: "موقع" };
+  return { en: p, ar: p };
+}
+function derived(item) {
+  const svc = serviceText();
+  const ref = String(F.referral || "").trim();
+  const ctx = String(F.context || "").trim();
+  const time = String(F.time || "").trim();
+  const pw = projectWord();
+  const d = {
+    name: enName(F.name) || "there",
+    nameAr: arName(F.name) || "",
+    title: String(F.title || "").trim(),
+    titleAr: arTitle(F.title),
+    company: String(F.company || "").trim(),
+    sender: enName(F.sender) || "Nouf",
+    senderAr: arName(F.sender) || "نوف",
+    senderCompany: String(F.senderCompany || "").trim() || "Caiperia Internet Services",
+    svcEn: svc.en, svcAr: svc.ar,
+    projectWord: pw.en, projectWordAr: pw.ar,
+    refLine: ref ? enName(ref) + " shared your contact details with me and recommended that I reach out to you." : "",
+    refLineAr: ref ? arName(ref) + " شاركني بيانات التواصل معك ونصحني بالتواصل معك." : "",
+    ctxLine: ctx, ctxLineAr: ctx,
+    askLine: time ? "Would " + time + " work for a short call?" : "Please let me know a convenient time for a short call.",
+    askLineAr: time ? "هل يناسبك " + time + " لمكالمة قصيرة؟" : "أرجو إخباري بالوقت المناسب لمكالمة قصيرة.",
+    askLineShort: time ? "would " + time + " work for a short call?" : "would a short call this week work for you?",
+    askLineShortAr: time ? "هل يناسبك " + time + " لمكالمة قصيرة؟" : "هل تناسبك مكالمة قصيرة هذا الأسبوع؟",
+    askLineConfirm: time ? "The call is set for " + time + "." : "Please confirm the time that suits you and I will send the invitation.",
+    askLineConfirmAr: time ? "المكالمة مثبتة في " + time + "." : "أرجو تأكيد الوقت المناسب لك وسأرسل الدعوة."
+  };
+  return d;
+}
+function fill(lines, d) {
+  return lines
+    .map(l => l.replace(/\{\{(\w+)\}\}/g, (m, k) => (d[k] !== undefined ? d[k] : "")).trim())
+    .filter(l => l.length > 0)
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n");
+}
+function renderItem(item) {
+  const d = derived(item);
+  return {
+    subject: item.subject ? item.subject.replace(/\{\{(\w+)\}\}/g, (m, k) => (d[k] !== undefined ? d[k] : "")) : "",
+    en: fill(item.en, d),
+    ar: fill(item.ar, d)
+  };
+}
+function snapshotVals() {
+  const d = derived();
+  lastVals = {
+    name: enName(F.name), nameAr: arName(F.name),
+    title: String(F.title || "").trim(), titleAr: arTitle(F.title),
+    company: String(F.company || "").trim(),
+    sender: enName(F.sender), senderAr: arName(F.sender),
+    senderCompany: String(F.senderCompany || "").trim(),
+    referral: enName(F.referral), referralAr: arName(F.referral),
+    time: String(F.time || "").trim(),
+    svcEn: d.svcEn, svcAr: d.svcAr,
+    project: String(F.project || "").trim(),
+    context: String(F.context || "").trim()
+  };
+}
+
+/* =======================================================================
+   editor
+   ======================================================================= */
+function openItem(id, opts) {
+  const item = byId(id); if (!item) return;
+  active = { id: id, ch: item.ch };
+  const s = (opts && opts.forceOriginal) ? null : saved[id];
+  const r = renderItem(item);
+  $("edName").textContent = item.name;
+  $("edChannel").textContent = item.ch === "wa" ? "WhatsApp" : "Email";
+  $("edChannel").className = "tag " + (item.ch === "wa" ? "wa" : "em");
+  setPair($("edStage"), item.stage, STAGE_AR[item.stage]);
+  $("subjectRow").hidden = item.ch !== "em";
+  $("subjBox").value = s && s.subject !== undefined ? s.subject : r.subject;
+  $("enBox").value = s ? s.en : r.en;
+  $("arBox").value = s ? s.ar : r.ar;
+  dirty = !!s;
+  snapshotVals();
+  refreshSavedUi();
+  updateCounts();
+  $("edStatus").textContent = s ? "معروضة: النسخة المحفوظة" : "معروضة: النسخة الأصلية";
+  $("gtNotice").hidden = true;
+  if (!(opts && opts.noScroll)) $("editorSection").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+function refreshSavedUi() {
+  const has = !!(active && saved[active.id]);
+  $("edSavedDot").hidden = !has;
+  $("btnRestore").disabled = !has;
+  $("btnDelSaved").hidden = !has;
+  renderLibrary();
+}
+function updateCounts() {
+  const en = $("enBox").value, ar = $("arBox").value;
+  const words = en.trim() ? en.trim().split(/\s+/).length : 0;
+  $("enCount").textContent = words + " words | " + en.length + " chars";
+  $("arCount").textContent = ar.length + " حرف";
+  const isWa = active && active.ch === "wa";
+  if (isWa) {
+    const n = en.length;
+    $("waHint").textContent = n > 900
+      ? "الرسالة طويلة للواتساب (" + n + " حرف). الأفضل أقل من 900 حرف."
+      : "طول مناسب للواتساب (" + n + " حرف).";
+    $("waHint").style.color = n > 900 ? "var(--amber)" : "var(--ink-3)";
+  } else {
+    $("waHint").textContent = "";
+  }
+}
+/* field change: keep manual edits by swapping the old value for the new one */
+function onFieldChange(key, prevRaw) {
+  store("fields", F);
+  const item = active ? byId(active.id) : null;
+  if (!item) { snapshotVals(); return; }
+  if (!dirty) {
+    const r = renderItem(item);
+    if (item.ch === "em") $("subjBox").value = r.subject;
+    $("enBox").value = r.en; $("arBox").value = r.ar;
+    snapshotVals(); updateCounts(); return;
+  }
+  const before = snapshotOf(prevRaw, key);
+  const pairs = [];
+  const now = {
+    name: enName(F.name), nameAr: arName(F.name),
+    title: String(F.title || "").trim(), titleAr: arTitle(F.title),
+    company: String(F.company || "").trim(),
+    sender: enName(F.sender), senderAr: arName(F.sender),
+    senderCompany: String(F.senderCompany || "").trim(),
+    referral: enName(F.referral), referralAr: arName(F.referral),
+    time: String(F.time || "").trim(), project: String(F.project || "").trim(),
+    context: String(F.context || "").trim()
+  };
+  const svc = serviceText();
+  now.svcEn = svc.en; now.svcAr = svc.ar;
+  for (const k in before) {
+    if (before[k] && now[k] && before[k] !== now[k]) pairs.push([before[k], now[k]]);
+  }
+  if (pairs.length) {
+    ["subjBox", "enBox", "arBox"].forEach(bid => {
+      let v = $(bid).value;
+      pairs.forEach(([a, b]) => { v = v.split(a).join(b); });
+      $(bid).value = v;
+    });
+    toast("تم تحديث الحقول داخل النص");
+  }
+  lastVals = now;
+  updateCounts();
+}
+/* the value set before this change, for the one key that changed */
+function snapshotOf(prevRaw, key) {
+  const b = Object.assign({}, lastVals);
+  if (key === "name") { b.name = enName(prevRaw); b.nameAr = arName(prevRaw); }
+  if (key === "title") { b.title = String(prevRaw || "").trim(); b.titleAr = arTitle(prevRaw); }
+  if (key === "referral") { b.referral = enName(prevRaw); b.referralAr = arName(prevRaw); }
+  if (key === "sender") { b.sender = enName(prevRaw); b.senderAr = arName(prevRaw); }
+  if (key === "senderCompany") b.senderCompany = String(prevRaw || "").trim();
+  if (key === "company") b.company = String(prevRaw || "").trim();
+  if (key === "time") b.time = String(prevRaw || "").trim();
+  if (key === "project") b.project = String(prevRaw || "").trim();
+  if (key === "context") b.context = String(prevRaw || "").trim();
+  if (key === "service") {
+    const s = svcById(prevRaw);
+    b.svcEn = s ? s.en : GENERIC_EN; b.svcAr = s ? s.ar : GENERIC_AR;
+  }
+  return b;
+}
+
+const PREVRAW = {};
+function syncPrevRaw() { FIELD_DEFS.forEach(f => { PREVRAW[f.k] = F[f.k]; }); }
+function buildFields() {
+  const box = $("fields"); box.textContent = "";
+  FIELD_DEFS.forEach(f => {
+    const lab = el("label", "fld");
+    const lb = el("span", "lb");
+    const en = el("bdi", "en", f.label); const ar = el("bdi", "ar", f.ar);
+    lb.appendChild(en); lb.appendChild(ar);
+    lab.appendChild(lb);
+    let inp;
+    if (f.type === "select") {
+      inp = document.createElement("select");
+      const o0 = el("option", null, "عام (بدون تحديد)"); o0.value = ""; inp.appendChild(o0);
+      SERVICES.forEach(s => { const o = el("option", null, s.en); o.value = s.id; inp.appendChild(o); });
+      inp.value = F[f.k] || "";
+    } else {
+      inp = document.createElement("input");
+      inp.type = "text"; inp.value = F[f.k] || "";
+      if (/^[A-Za-z]/.test(String(f.def || "")) || f.k === "name" || f.k === "sender") { inp.dir = "auto"; }
+    }
+    inp.id = "f_" + f.k;
+    PREVRAW[f.k] = F[f.k] || "";
+    const commit = () => {
+      const p = PREVRAW[f.k]; PREVRAW[f.k] = inp.value; F[f.k] = inp.value; onFieldChange(f.k, p);
+      if (f.k === "sender" || f.k === "senderCompany") $("whoLine").textContent = (F.sender || "Nouf") + " | " + (F.senderCompany || "Caiperia Internet Services");
+    };
+    inp.addEventListener("change", commit);
+    if (f.type !== "select") inp.addEventListener("blur", commit);
+    lab.appendChild(inp);
+    box.appendChild(lab);
+  });
+  $("whoLine").textContent = (F.sender || "Nouf") + " | " + (F.senderCompany || "Caiperia Internet Services");
+  syncPrevRaw();
+}
+
+/* =======================================================================
+   command bar
+   ======================================================================= */
+const CH_WA = ["واتساب", "واتس", "وتساب", "واتس اب", "whatsapp", "whats app", "wa", "wsp", "wtsp"];
+const CH_EM = ["ايميل", "إيميل", "بريد", "بريد الكتروني", "email", "e mail", "mail", "gmail", "outlook"];
+const EXAMPLES = [
+  "إيميل – عمر – تعريف بالشركة",
+  "واتساب – عمر – تواصل أول مرة",
+  "Email – Umer – Company Introduction",
+  "WhatsApp – Umer – Follow-Up",
+  "إيميل – عمر – إرسال الملف التعريفي",
+  "واتساب – عمر – طلب موعد مكالمة",
+  "إيميل – عمر – عرض خدمات البنية التحتية – تجهيز غرفة السيرفرات",
+  "واتساب – عمر – الرد على وجود مزود حالي",
+  "إيميل – عمر – طلب زيارة موقع",
+  "واتساب – عمر – متابعة العرض الفني",
+  "إيميل – عمر – تسجيل مورد",
+  "واتساب – عمر – إغلاق المتابعة بأدب",
+  "إيميل – عمر – تعريف بالشركة – الإنترنت وتأسيس البنية التحتية – الأستاذ عبدالرحمن اقترح التواصل معه"
+];
+function detectChannel(part) {
+  const t = norm(part); if (!t) return null;
+  for (const k of CH_WA) { const kk = norm(k); if (t === kk || t.includes(kk) || sim(t, kk) > 0.8) return "wa"; }
+  for (const k of CH_EM) { const kk = norm(k); if (t === kk || t.includes(kk) || sim(t, kk) > 0.8) return "em"; }
+  return null;
+}
+function matchService(part) {
+  const t = norm(part); if (!t || t.split(" ").length > 7) return null;
+  let best = null, bestScore = 0;
+  SERVICES.forEach(s => {
+    const sc = Math.max(keyScore(part, [s.en, s.ar]), 0);
+    if (sc > bestScore) { bestScore = sc; best = s; }
+  });
+  /* generic mentions of internet + infrastructure */
+  if (bestScore < 0.55 && /(انترنت|internet)/.test(t) && /(بنيه|بنية|infra|infrastructure|تاسيس)/.test(t)) return { id: "", generic: true };
+  return bestScore >= 0.55 ? best : null;
+}
+const REF_HINT = /(اقترح|رشح|رشحني|نصحني|شاركني|دلني|حولني|recommend|referred|shared|suggested|introduced)/;
+const REF_STOP = /\s*(اقترح\w*|رشح\w*|نصحني|شاركني|دلني|حولني|قال|ذكر|recommended|referred|shared|suggested|introduced)\b.*$/;
+function trimRef(v) { return String(v || "").replace(REF_STOP, "").replace(/[\s,،.]+$/, "").trim(); }
+function extractReferral(text) {
+  const t = String(text || "");
+  if (!REF_HINT.test(norm(t)) && !REF_HINT.test(t)) return null;
+  let m = t.match(/(?:الأستاذة|الاستاذة|الأستاذ|الاستاذ|المهندسة|المهندس|الدكتورة|الدكتور|أ\.|م\.|د\.)\s*[؀-ۿ]+(?:\s+[؀-ۿ]+)?/);
+  if (m) return trimRef(m[0]);
+  m = t.match(/\b(?:Mr\.?|Ms\.?|Mrs\.?|Eng\.?|Dr\.?)\s+[A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)?/);
+  if (m) return trimRef(m[0]);
+  m = t.match(/^([؀-ۿ]+(?:\s+[؀-ۿ]+)?)\s+(?:اقترح|رشح|نصحني|شاركني)/);
+  if (m) return trimRef(m[1]);
+  m = t.match(/^([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)?)\s+(?:recommended|referred|shared|suggested)/);
+  if (m) return trimRef(m[1]);
+  return null;
+}
+const PURPOSE_HINT = ["تعريف", "متابعة", "اجتماع", "مكالمة", "عرض", "زيارة", "خدمات", "مورد", "سعر", "اسعار", "مزود", "مشروع", "فرع", "بنية", "ملف", "ايميل", "تحويل", "مختص", "احتياج", "تفاصيل",
+  "intro", "introduction", "follow", "meeting", "call", "proposal", "survey", "services", "vendor", "price", "provider", "project", "branch", "profile", "details", "infrastructure"];
+function looksLikePurpose(part) {
+  const t = norm(part); if (!t) return false;
+  return PURPOSE_HINT.some(h => { const hh = norm(h); return t.includes(hh) || hh.includes(t) || sim(t, hh) > 0.8; });
+}
+function parseCommand(raw) {
+  const out = { channel: null, name: "", purpose: "", service: null, context: "", missing: [], match: null, score: 0 };
+  let parts = String(raw || "").split(/\s*[–—−|]\s*|\s+-\s+/).map(s => s.trim()).filter(Boolean);
+  if (parts.length === 1 && /-/.test(raw)) parts = String(raw).split(/\s*-\s*/).map(s => s.trim()).filter(Boolean);
+  if (!parts.length) { out.missing.push("channel", "purpose"); return out; }
+  /* channel from any part */
+  for (let i = 0; i < parts.length; i++) {
+    const c = detectChannel(parts[i]);
+    if (c) { out.channel = c; parts.splice(i, 1); break; }
+  }
+  /* name: first remaining part that is not a purpose */
+  if (parts.length && !looksLikePurpose(parts[0]) && parts.length > 1) out.name = parts.shift();
+  else if (parts.length === 1 && !looksLikePurpose(parts[0]) && parts[0].split(/\s+/).length <= 2) out.name = parts.shift();
+  if (parts.length) out.purpose = parts.shift();
+  /* service or context */
+  if (parts.length) {
+    const s = matchService(parts[0]);
+    if (s) { out.service = s; parts.shift(); }
+  }
+  if (parts.length) out.context = parts.join(" - ");
+  if (!out.channel) out.missing.push("channel");
+  if (!out.purpose) out.missing.push("purpose");
+  /* best matching template inside the channel */
+  const pool = out.channel ? ALL.filter(x => x.ch === out.channel) : ALL;
+  let best = null, bestScore = 0;
+  pool.forEach(it => {
+    const sc = keyScore(out.purpose || "", it.keys);
+    if (sc > bestScore) { bestScore = sc; best = it; }
+  });
+  out.match = best; out.score = bestScore;
+  return out;
+}
+function renderParse(p, raw) {
+  const box = $("parseBox"); box.textContent = ""; box.className = "parse";
+  const add = (k, v) => { const s = el("span", "kv"); s.appendChild(el("b", null, k + ": ")); s.appendChild(document.createTextNode(v)); box.appendChild(s); };
+  if (p.channel) add("القناة", p.channel === "wa" ? "WhatsApp" : "Email");
+  if (p.name) add("العميل", p.name);
+  if (p.purpose) add("المطلوب", p.purpose);
+  if (p.service && p.service.id) add("الخدمة", svcById(p.service.id) ? svcById(p.service.id).ar : "");
+  if (p.service && p.service.generic) add("الخدمة", "عام: إنترنت وبنية تحتية");
+  if (p.context) add("السياق", p.context);
+  if (p.match) add("السيناريو", p.match.name + (p.score < 0.5 ? " (أقرب تطابق)" : ""));
+  box.hidden = box.childElementCount === 0;
+
+  if (p.missing.length) {
+    box.className = "parse ask";
+    const need = el("span", "kv");
+    need.appendChild(el("b", null, "ناقص: "));
+    need.appendChild(document.createTextNode(p.missing.includes("channel") && p.missing.includes("purpose") ? "القناة والمطلوب" : p.missing.includes("channel") ? "القناة" : "المطلوب"));
+    box.appendChild(need);
+    box.hidden = false;
+    if (p.missing.includes("channel")) {
+      ["واتساب", "إيميل"].forEach((lbl, i) => {
+        const b = el("button", "chip", lbl);
+        b.onclick = () => { $("cmdInput").value = lbl + " – " + raw; runCommand(); };
+        box.appendChild(b);
+      });
+    }
+  }
+}
+function runCommand() {
+  const raw = $("cmdInput").value.trim();
+  if (!raw) { toast("اكتبي أمرًا أولًا، أو اضغطي أحد الأمثلة.", "err"); return; }
+  const p = parseCommand(raw);
+  renderParse(p, raw);
+  if (p.missing.includes("channel")) { toast("حددي القناة: واتساب أو إيميل", "err"); return; }
+  if (p.missing.includes("purpose")) { toast("اكتبي الهدف من الرسالة", "err"); return; }
+  if (!p.match) { toast("لم أتعرف على الهدف. جرّبي كلمة أوضح مثل: تعريف، متابعة، عرض، زيارة موقع.", "err"); return; }
+
+  /* fields learned from the command */
+  if (p.name) { F.name = p.name; const i = $("f_name"); if (i) i.value = p.name; }
+  if (p.service && p.service.id) { F.service = p.service.id; const i = $("f_service"); if (i) i.value = p.service.id; }
+  if (p.service && p.service.generic) { F.service = ""; const i = $("f_service"); if (i) i.value = ""; }
+  if (p.context) {
+    const ref = extractReferral(p.context);
+    if (ref) { F.referral = ref; const i = $("f_referral"); if (i) i.value = ref; F.context = ""; const c = $("f_context"); if (c) c.value = ""; }
+    else { F.context = p.context; const c = $("f_context"); if (c) c.value = p.context; }
+  }
+  store("fields", F);
+  syncPrevRaw();
+  openItem(p.match.id, { forceOriginal: true });
+  pushRecent(raw);
+  toast("تم إنشاء الرسالة: " + p.match.name);
+}
+function pushRecent(raw) {
+  recent = [raw].concat(recent.filter(r => r !== raw)).slice(0, 8);
+  store("recent", recent); renderRecent();
+}
+function renderRecent() {
+  const wrap = $("recentWrap"), list = $("recentList");
+  list.textContent = "";
+  if (!recent.length) { wrap.hidden = true; return; }
+  wrap.hidden = false;
+  recent.forEach(r => {
+    const b = el("button", "chip");
+    b.appendChild(el("span", null, r));
+    b.title = "تحميل الأمر للتعديل";
+    b.onclick = () => { $("cmdInput").value = r; $("cmdInput").focus(); renderParse(parseCommand(r), r); };
+    list.appendChild(b);
+  });
+}
+function renderExamples() {
+  const box = $("cmdExamples"); box.textContent = "";
+  EXAMPLES.slice(0, 8).forEach(x => {
+    const b = el("button", "chip", x);
+    b.onclick = () => { $("cmdInput").value = x; renderParse(parseCommand(x), x); $("cmdInput").focus(); };
+    box.appendChild(b);
+  });
+  const more = el("button", "chip", "أمثلة أكثر");
+  more.onclick = () => {
+    box.textContent = "";
+    EXAMPLES.forEach(x => { const b = el("button", "chip", x); b.onclick = () => { $("cmdInput").value = x; renderParse(parseCommand(x), x); }; box.appendChild(b); });
+  };
+  box.appendChild(more);
+}
+
+/* =======================================================================
+   library rendering + filters
+   ======================================================================= */
+let filt = { ch: "all", stage: "all", svc: "", q: "" };
+function itemPreview(it) {
+  const s = saved[it.id];
+  return (s ? s.en : renderItem(it).en).split("\n").slice(1).join(" ");
+}
+function matchesFilters(it) {
+  if (filt.ch !== "all" && it.ch !== filt.ch) return false;
+  if (filt.stage !== "all" && it.stage !== filt.stage) return false;
+  if (filt.svc && !(it.tags || []).includes(filt.svc)) return false;
+  if (filt.q) {
+    const q = norm(filt.q);
+    const hay = norm([it.name, it.desc, it.keys.join(" "), renderItem(it).en, renderItem(it).ar].join(" "));
+    if (!hay.includes(q)) return false;
+  }
+  return true;
+}
+function card(it) {
+  const a = el("article", "item card");
+  const head = el("div", "head");
+  head.appendChild(el("span", "tag " + (it.ch === "wa" ? "wa" : "em"), it.ch === "wa" ? "WhatsApp" : "Email"));
+  head.appendChild(pairTag("tag stage", it.stage, STAGE_AR[it.stage]));
+  if (saved[it.id]) { const d = el("span", "saved-dot"); d.appendChild(el("i")); d.appendChild(document.createTextNode("نسخة محفوظة")); head.appendChild(d); }
+  head.appendChild(el("h4", null, it.name));
+  a.appendChild(head);
+  a.appendChild(el("p", "desc", it.desc));
+  a.appendChild(el("p", "prev", itemPreview(it)));
+  const row = el("div", "row");
+  const open = el("button", "btn sm primary", "فتح في المحرر");
+  open.onclick = () => openItem(it.id);
+  const cEn = el("button", "btn sm", "نسخ EN");
+  cEn.onclick = () => { const s = saved[it.id], r = renderItem(it); copyAndToast((s ? s.en : r.en), "Copied Successfully"); };
+  const cAr = el("button", "btn sm", "نسخ AR");
+  cAr.onclick = () => { const s = saved[it.id], r = renderItem(it); copyAndToast((s ? s.ar : r.ar), "تم النسخ"); };
+  row.appendChild(open); row.appendChild(cEn); row.appendChild(cAr);
+  if (saved[it.id]) {
+    const rst = el("button", "btn sm ghost", "إعادة الأصل");
+    rst.onclick = () => confirmInline(rst, "تأكيد الحذف", () => {
+      delete saved[it.id]; store("saved", saved);
+      if (active && active.id === it.id) openItem(it.id, { forceOriginal: true });
+      toast("Original Version Restored"); refreshSavedUi();
+    });
+    row.appendChild(rst);
+  }
+  a.appendChild(row);
+  return a;
+}
+function confirmInline(btn, label, fn) {
+  const old = btn.textContent;
+  if (btn.dataset.armed === "1") { btn.dataset.armed = "0"; btn.textContent = old; fn(); return; }
+  btn.dataset.armed = "1"; btn.textContent = label; btn.classList.add("danger");
+  setTimeout(() => { if (btn.dataset.armed === "1") { btn.dataset.armed = "0"; btn.textContent = old; btn.classList.remove("danger"); } }, 4000);
+}
+function renderLibrary() {
+  const wa = WA.map(x => ({ ...x, ch: "wa" })).filter(matchesFilters);
+  const em = EM.map(x => ({ ...x, ch: "em" })).filter(matchesFilters);
+  const wg = $("waGrid"), eg = $("emGrid");
+  wg.textContent = ""; eg.textContent = "";
+  wa.forEach(it => wg.appendChild(card(it)));
+  em.forEach(it => eg.appendChild(card(it)));
+  $("waBlock").hidden = wa.length === 0;
+  $("emBlock").hidden = em.length === 0;
+  $("libEmpty").hidden = (wa.length + em.length) > 0;
+  $("libCount").textContent = (wa.length + em.length) + " من " + ALL.length + " رسالة";
+}
+function buildFilters() {
+  const st = $("stFilter"); st.textContent = "";
+  const all = el("button", "chip", "كل المراحل"); all.dataset.st = "all"; all.setAttribute("aria-pressed", "true"); st.appendChild(all);
+  STAGES.forEach(s => { const b = el("button", "chip", STAGE_AR[s]); b.dataset.st = s; b.setAttribute("aria-pressed", "false"); b.title = s; st.appendChild(b); });
+  st.addEventListener("click", e => {
+    const b = e.target.closest("button[data-st]"); if (!b) return;
+    [...st.querySelectorAll("button")].forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    filt.stage = b.dataset.st; renderLibrary();
+  });
+  $("chFilter").addEventListener("click", e => {
+    const b = e.target.closest("button[data-ch]"); if (!b) return;
+    [...$("chFilter").querySelectorAll("button")].forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    filt.ch = b.dataset.ch; renderLibrary();
+  });
+  const sf = $("svcFilter"); sf.textContent = "";
+  const o0 = el("option", null, "كل الخدمات"); o0.value = ""; sf.appendChild(o0);
+  SERVICES.forEach(s => { const o = el("option", null, s.ar); o.value = s.id; sf.appendChild(o); });
+  sf.onchange = () => { filt.svc = sf.value; renderLibrary(); };
+  let t;
+  $("search").addEventListener("input", () => { clearTimeout(t); t = setTimeout(() => { filt.q = $("search").value; renderLibrary(); }, 180); });
+}
+
+/* =======================================================================
+   cadence
+   ======================================================================= */
+function buildCadence() {
+  const box = $("cadList"); box.textContent = "";
+  CADENCE.forEach((c, i) => {
+    const it = byId(c.ref);
+    const d = document.createElement("details");
+    if (i === 0) d.open = true;
+    const s = document.createElement("summary");
+    s.appendChild(el("span", "day", c.day));
+    s.appendChild(el("b", null, c.label));
+    s.appendChild(el("span", "tag " + (it.ch === "wa" ? "wa" : "em"), it.ch === "wa" ? "WhatsApp" : "Email"));
+    d.appendChild(s);
+    const b = el("div", "body");
+    b.appendChild(el("p", null, c.note));
+    b.appendChild(el("p", "prev", itemPreview(it)));
+    const row = el("div", "row");
+    row.style.cssText = "display:flex;gap:7px;flex-wrap:wrap";
+    const o = el("button", "btn sm primary", "فتح في المحرر"); o.onclick = () => openItem(it.id);
+    const ce = el("button", "btn sm", "نسخ EN"); ce.onclick = () => { const sv = saved[it.id]; copyAndToast(sv ? sv.en : renderItem(it).en); };
+    const ca = el("button", "btn sm", "نسخ AR"); ca.onclick = () => { const sv = saved[it.id]; copyAndToast(sv ? sv.ar : renderItem(it).ar, "تم النسخ"); };
+    row.appendChild(o); row.appendChild(ce); row.appendChild(ca);
+    b.appendChild(row);
+    d.appendChild(b);
+    box.appendChild(d);
+  });
+}
+
+/* =======================================================================
+   services manager
+   ======================================================================= */
+function renderServices() {
+  const box = $("svcList"); box.textContent = "";
+  SERVICES.forEach((s, i) => {
+    const r = el("div", "svc-row");
+    r.appendChild(el("span", "en", s.en));
+    r.appendChild(el("span", "ar", s.ar));
+    const ed = el("button", "btn sm ghost", "تعديل");
+    ed.onclick = () => editService(i, r);
+    const dl = el("button", "btn sm ghost", "حذف");
+    dl.onclick = () => confirmInline(dl, "تأكيد الحذف", () => {
+      SERVICES.splice(i, 1); store("services", SERVICES);
+      if (!svcById(F.service)) { F.service = ""; store("fields", F); }
+      renderServices(); buildFields(); buildFilters(); renderLibrary(); toast("تم حذف الخدمة");
+    });
+    r.appendChild(ed); r.appendChild(dl);
+    box.appendChild(r);
+  });
+}
+function editService(i, row) {
+  const s = SERVICES[i];
+  row.textContent = "";
+  const en = document.createElement("input"); en.type = "text"; en.value = s.en; en.dir = "ltr"; en.style.cssText = "text-align:left;font-family:var(--fs);flex:1 1 200px";
+  const ar = document.createElement("input"); ar.type = "text"; ar.value = s.ar; ar.style.flex = "1 1 170px";
+  const ok = el("button", "btn sm primary", "حفظ");
+  const no = el("button", "btn sm ghost", "إلغاء");
+  ok.onclick = () => {
+    if (!en.value.trim() || !ar.value.trim()) { toast("اكتبي الاسم بالإنجليزي والعربي", "err"); return; }
+    SERVICES[i] = { id: s.id, en: en.value.trim(), ar: ar.value.trim() };
+    store("services", SERVICES); renderServices(); buildFields(); buildFilters(); renderLibrary(); toast("تم تعديل الخدمة");
+  };
+  no.onclick = renderServices;
+  row.appendChild(en); row.appendChild(ar); row.appendChild(ok); row.appendChild(no);
+  en.focus();
+}
+
+/* =======================================================================
+   capabilities: AI writing + translation + export
+   ======================================================================= */
+let SAMPLE = null, DL = null;
+const VOICE = [
+  "You are writing as Nouf, a marketer and sales representative at Caiperia Internet Services in Saudi Arabia.",
+  "Voice: professional, confident, human, polite, short, consultative. Simple professional English. Never pushy, never hyped.",
+  "Rules: the goal of an outreach message is to open a conversation and get a short call or meeting, not to list every service.",
+  "Never invent prices, coverage, speeds, SLAs, certifications, client names, or any promise. Never claim a service outside the approved list.",
+  "Keep it plain: no marketing superlatives, no emoji, no em-dashes, no filler. It must read like a real person wrote it.",
+  "Arabic version: natural professional Arabic, same meaning, not a literal machine translation."
+].join(" ");
+function approvedList() { return SERVICES.map(s => s.en).join("; "); }
+function fieldBrief(it) {
+  return [
+    "Channel: " + (it.ch === "wa" ? "WhatsApp (short, chat style, no formal letter layout)" : "Email (subject line + short body, formal but simple)"),
+    "Scenario: " + it.name + " (" + it.desc + ")",
+    "Stage: " + it.stage,
+    "Recipient: " + (F.title || "") + " " + (F.name || ""),
+    "Recipient company: " + (F.company || "not given"),
+    "Sender: " + (F.sender || "Nouf") + ", " + (F.senderCompany || "Caiperia Internet Services"),
+    "Referral: " + (F.referral || "none"),
+    "Required service: " + (serviceText().en),
+    "Project type: " + (F.project || "not given"),
+    "Proposed time: " + (F.time || "not given"),
+    "Extra context: " + (F.context || "none"),
+    "Approved services (do not go outside this list): " + approvedList()
+  ].join("\n");
+}
+async function aiRewrite() {
+  if (!SAMPLE || !active) return;
+  const it = byId(active.id);
+  const btn = $("btnAi"); btn.disabled = true;
+  const t = toast("جاري التحسين...", "wait");
+  try {
+    const want = it.ch === "em"
+      ? 'Reply with only a JSON object: {"subject":"...","en":"...","ar":"..."}'
+      : 'Reply with only a JSON object: {"en":"...","ar":"..."}';
+    const res = await SAMPLE.json([{
+      role: "user",
+      content: VOICE + "\n\n" + fieldBrief(it) +
+        "\n\nCurrent draft (improve it, keep it short and keep every factual detail; do not add new claims):\n" + $("enBox").value +
+        "\n\n" + want + " Use \\n for line breaks inside the strings."
+    }], { modelTier: "default" });
+    if (res && res.en) {
+      $("enBox").value = String(res.en).trim();
+      if (res.ar) $("arBox").value = String(res.ar).trim();
+      if (it.ch === "em" && res.subject) $("subjBox").value = String(res.subject).trim();
+      dirty = true; updateCounts(); toast("تم تحسين الرسالة");
+    } else { toast("لم أستلم نصًا صالحًا. النص الأصلي كما هو.", "err"); }
+  } catch (e) {
+    const c = e && e.code;
+    if (c === "cancelled") { /* nothing */ }
+    else if (c === "not_granted") { toast("التحسين بالذكاء الاصطناعي غير مسموح في هذا العرض.", "err"); btn.hidden = true; }
+    else if (c === "rate_limited") toast("الحد الأقصى للاستخدام. حاولي بعد قليل.", "err");
+    else if (c === "invalid_json") toast("الرد لم يكن بالصيغة المطلوبة. جرّبي مرة أخرى.", "err");
+    else toast("تعذر التحسين الآن. النص الأصلي كما هو.", "err");
+  } finally { btn.disabled = false; if (t) t.remove(); }
+}
+function gtUrl(text) {
+  return "https://translate.google.com/?sl=en&tl=ar&op=translate&text=" + encodeURIComponent(text.slice(0, 4500));
+}
+function showGtFallback(text) {
+  const box = $("gtNotice");
+  box.textContent = "";
+  box.appendChild(document.createTextNode("الترجمة الآلية غير متاحة داخل الصفحة. استخدمي مترجم جوجل كبديل: "));
+  const a = document.createElement("a");
+  a.href = gtUrl(text); a.target = "_blank"; a.rel = "noopener noreferrer";
+  a.textContent = "فتح النص في Google Translate";
+  box.appendChild(a);
+  box.appendChild(document.createTextNode(" "));
+  const cp = el("button", "btn sm", "نسخ النص الإنجليزي");
+  cp.style.marginInlineStart = "6px";
+  cp.onclick = () => copyAndToast(text);
+  box.appendChild(cp);
+  box.appendChild(el("div", "muted", "إذا لم يفتح الرابط بسبب إعدادات العرض، انسخي النص والصقيه في المترجم."));
+  box.hidden = false;
+}
+async function translateNow(silent) {
+  const text = $("enBox").value.trim();
+  if (!text) { if (!silent) toast("لا يوجد نص إنجليزي للترجمة", "err"); return; }
+  if (!SAMPLE) { showGtFallback(text); if (!silent) toast("الترجمة الآلية غير متاحة", "err"); return; }
+  const btn = $("btnTranslate"); btn.disabled = true;
+  const t = toast("جاري الترجمة...", "wait");
+  try {
+    const res = await SAMPLE([{
+      role: "user",
+      content: "Translate the following business message from English into natural professional Arabic. " +
+        "Keep the same structure, line breaks, and level of formality. Keep names, company names and technical terms such as SD-WAN, VPN, Wi-Fi as they are. " +
+        "Reply with only the Arabic translation, nothing else.\n\n" + text
+    }], { modelTier: "quick" });
+    if (res && res.text) { $("arBox").value = res.text.trim(); updateCounts(); $("gtNotice").hidden = true; toast("Translation Updated"); }
+  } catch (e) {
+    const c = e && e.code;
+    if (c === "cancelled") { /* nothing */ }
+    else if (c === "not_granted") { showGtFallback(text); toast("الترجمة داخل الصفحة غير مسموحة في هذا العرض", "err"); }
+    else if (c === "rate_limited") toast("الحد الأقصى للاستخدام. حاولي بعد قليل.", "err");
+    else { showGtFallback(text); toast("تعذرت الترجمة الآن", "err"); }
+  } finally { btn.disabled = false; if (t) t.remove(); }
+}
+async function exportWord() {
+  if (!DL || !active) return;
+  const it = byId(active.id);
+  const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const p = s => esc(s).split("\n").map(l => "<p>" + (l || "&nbsp;") + "</p>").join("");
+  const html = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word'><head><meta charset='utf-8'>" +
+    "<style>body{font-family:Calibri,Arial,sans-serif;font-size:11pt}h2{font-size:13pt}.ar{direction:rtl;text-align:right}</style></head><body>" +
+    "<h2>" + esc(it.name) + " | " + (it.ch === "wa" ? "WhatsApp" : "Email") + "</h2>" +
+    (it.ch === "em" ? "<p><b>Subject:</b> " + esc($("subjBox").value) + "</p>" : "") +
+    "<h3>English</h3>" + p($("enBox").value) +
+    "<h3 class='ar'>العربية</h3><div class='ar'>" + p($("arBox").value) + "</div>" +
+    "</body></html>";
+  try {
+    const r = await DL.save({ filename: "nouf-" + it.id + "-" + (F.name || "client").replace(/\s+/g, "-") + ".doc", data: html });
+    if (r && r.status === "saved") toast("تم تصدير الملف");
+  } catch (e) {
+    const c = e && e.code;
+    if (c === "cancelled") return;
+    if (c === "unavailable") { $("btnExport").hidden = true; toast("التصدير غير متاح في هذا العرض", "err"); return; }
+    toast("تعذر التصدير. استخدمي النسخ.", "err");
+  }
+}
+async function initCaps() {
+  if (!window.claude || typeof window.claude.use !== "function") return;
+  try {
+    const s = await window.claude.use("sample");
+    if (s) { SAMPLE = s; $("btnAi").hidden = false; }
+  } catch (e) {}
+  try {
+    const d = await window.claude.use("downloads");
+    if (d) { DL = d; $("btnExport").hidden = false; }
+  } catch (e) {}
+}
+
+/* =======================================================================
+   gate
+   ======================================================================= */
+const PW_HASH = 5480709; /* djb2-lite of the passcode; kept out of the UI */
+function hash(s) { let h = 5381; for (let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) & 0x7fffff; return h; }
+let tries = 0, lockUntil = 0;
+function gateMsg(m, ok) { const n = $("gateMsg"); n.textContent = m || ""; n.style.color = ok ? "var(--turq)" : "var(--bad)"; }
+function unlock() {
+  $("gate").hidden = true;
+  $("app").hidden = false;
+  try { sessionStorage.setItem("nsms.auth", "1"); } catch (e) {}
+  bootApp();
+}
+function tryUnlock() {
+  const now = Date.now();
+  if (now < lockUntil) { gateMsg("محاولات كثيرة. انتظري " + Math.ceil((lockUntil - now) / 1000) + " ثانية."); return; }
+  const v = $("pw").value.trim();
+  if (hash(v) === PW_HASH && v.length === 4) { gateMsg("", true); unlock(); return; }
+  tries++;
+  $("pw").value = "";
+  if (tries >= 5) {
+    lockUntil = now + 30000; tries = 0;
+    gateMsg("محاولات كثيرة. انتظري 30 ثانية.");
+    const iv = setInterval(() => {
+      const left = Math.ceil((lockUntil - Date.now()) / 1000);
+      if (left <= 0) { clearInterval(iv); gateMsg(""); } else gateMsg("محاولات كثيرة. انتظري " + left + " ثانية.");
+    }, 1000);
+  } else {
+    gateMsg("كلمة المرور غير صحيحة" + (tries >= 3 ? " (محاولة " + tries + " من 5)" : ""));
+  }
+}
+$("gateForm").addEventListener("submit", e => { e.preventDefault(); tryUnlock(); });
+$("pwToggle").addEventListener("click", () => {
+  const i = $("pw"), on = i.type === "password";
+  i.type = on ? "text" : "password";
+  $("pwToggle").textContent = on ? "إخفاء" : "إظهار";
+  $("pwToggle").setAttribute("aria-pressed", String(on));
+  i.focus();
+});
+
+/* =======================================================================
+   boot
+   ======================================================================= */
+let booted = false;
+function bootApp() {
+  if (booted) { return; }
+  booted = true;
+  buildFields();
+  renderExamples();
+  renderRecent();
+  buildFilters();
+  renderLibrary();
+  buildCadence();
+  renderServices();
+  openItem("w1", { forceOriginal: !saved["w1"], noScroll: true });
+  $("edStatus").textContent = saved["w1"] ? "معروضة: النسخة المحفوظة" : "معروضة: النسخة الأصلية";
+
+  $("btnGen").onclick = runCommand;
+  $("cmdInput").addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); runCommand(); } });
+  $("cmdInput").addEventListener("input", () => {
+    const v = $("cmdInput").value.trim();
+    if (v.length > 3) renderParse(parseCommand(v), v); else $("parseBox").hidden = true;
+  });
+  $("btnLastCmd").onclick = () => {
+    if (!recent.length) { toast("لا يوجد أمر سابق بعد", "err"); return; }
+    $("cmdInput").value = recent[0]; renderParse(parseCommand(recent[0]), recent[0]); $("cmdInput").focus();
+  };
+
+  $("btnCopyEn").onclick = () => copyAndToast($("enBox").value);
+  $("btnCopyAr").onclick = () => copyAndToast($("arBox").value, "تم النسخ");
+  $("btnCopySubjEmail").onclick = () => copyAndToast("Subject: " + $("subjBox").value + "\n\n" + $("enBox").value, "تم نسخ Subject مع النص");
+  $("btnTranslate").onclick = () => translateNow(false);
+  $("btnAi").onclick = aiRewrite;
+  $("btnExport").onclick = exportWord;
+
+  $("btnSave").onclick = () => {
+    if (!active) return;
+    saved[active.id] = { subject: $("subjBox").value, en: $("enBox").value, ar: $("arBox").value };
+    store("saved", saved); dirty = true; refreshSavedUi();
+    $("edStatus").textContent = "معروضة: النسخة المحفوظة";
+    toast("Version Saved");
+  };
+  $("btnRestore").onclick = () => {
+    if (!active || !saved[active.id]) { toast("لا توجد نسخة محفوظة", "err"); return; }
+    openItem(active.id);
+    toast("تم استرجاع النسخة المحفوظة");
+  };
+  $("btnReset").onclick = () => {
+    if (!active) return;
+    openItem(active.id, { forceOriginal: true });
+    $("edStatus").textContent = "معروضة: النسخة الأصلية";
+    toast("Original Version Restored");
+  };
+  $("btnDelSaved").onclick = () => {
+    if (!active) return;
+    confirmInline($("btnDelSaved"), "تأكيد الحذف", () => {
+      delete saved[active.id]; store("saved", saved);
+      openItem(active.id, { forceOriginal: true });
+      toast("تم حذف النسخة المحفوظة"); refreshSavedUi();
+    });
+  };
+
+  let trT;
+  const onEdit = () => {
+    dirty = true; updateCounts();
+    if ($("autoTr").checked) { clearTimeout(trT); trT = setTimeout(() => translateNow(true), 1400); }
+  };
+  $("enBox").addEventListener("input", onEdit);
+  $("arBox").addEventListener("input", () => { dirty = true; updateCounts(); });
+  $("subjBox").addEventListener("input", () => { dirty = true; });
+
+  $("btnServices").onclick = () => {
+    const s = $("servicesSection");
+    s.hidden = !s.hidden;
+    if (!s.hidden) s.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  $("btnAddSvc").onclick = () => {
+    const en = $("svcEn").value.trim(), ar = $("svcAr").value.trim();
+    if (!en || !ar) { toast("اكتبي اسم الخدمة بالإنجليزي والعربي", "err"); return; }
+    SERVICES.push({ id: "s" + Date.now().toString(36), en, ar });
+    store("services", SERVICES);
+    $("svcEn").value = ""; $("svcAr").value = "";
+    renderServices(); buildFields(); buildFilters(); renderLibrary(); toast("تمت إضافة الخدمة");
+  };
+  $("btnResetSvc").onclick = () => confirmInline($("btnResetSvc"), "تأكيد الإرجاع", () => {
+    SERVICES = SERVICES_DEFAULT.slice(); store("services", SERVICES);
+    renderServices(); buildFields(); buildFilters(); renderLibrary(); toast("تم إرجاع القائمة الأصلية");
+  });
+
+  $("btnLogout").onclick = () => {
+    try { sessionStorage.removeItem("nsms.auth"); } catch (e) {}
+    $("app").hidden = true; $("gate").hidden = false;
+    $("pw").value = ""; $("pw").type = "password"; $("pwToggle").textContent = "إظهار";
+    gateMsg(""); window.scrollTo(0, 0); $("pw").focus();
+  };
+
+  initCaps();
+}
+document.documentElement.dir = "rtl";
+document.documentElement.lang = "ar";
+try { if (sessionStorage.getItem("nsms.auth") === "1") { $("gate").hidden = true; $("app").hidden = false; bootApp(); } else { $("pw").focus(); } }
+catch (e) { $("pw").focus(); }
+</script>
+
+</body>
+</html>
