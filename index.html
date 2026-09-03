@@ -386,6 +386,10 @@ footer.foot{margin-top:30px;padding-top:14px;border-top:1px solid var(--line-sof
         <span id="whoLine">نوف | Caiperia Internet Services</span>
       </span>
       <span class="acts">
+        <button class="btn sm ghost" id="btnTheme" title="تبديل المظهر" aria-label="تبديل المظهر بين الداكن والفاتح">
+          <svg id="themeIcon" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"></svg>
+          <span id="themeLbl">فاتح</span>
+        </button>
         <button class="btn sm ghost" id="btnServices">الخدمات</button>
         <button class="btn sm ghost" id="btnLogout">تسجيل الخروج</button>
       </span>
@@ -2217,6 +2221,26 @@ async function initCaps() {
     if (d) { DL = d; $("btnExport").hidden = false; }
   } catch (e) {}
 }
+
+/* =======================================================================
+   theme: dark by default, the viewer can switch and the choice is kept
+   ======================================================================= */
+const ICON_MOON = '<path d="M13.2 9.7A5.6 5.6 0 0 1 6.3 2.8a5.7 5.7 0 1 0 6.9 6.9z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>';
+const ICON_SUN = '<circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 1v1.8M8 13.2V15M1 8h1.8M13.2 8H15M3 3l1.3 1.3M11.7 11.7 13 13M13 3l-1.3 1.3M4.3 11.7 3 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>';
+let THEME = store("theme") || "dark";
+function applyTheme(t) {
+  THEME = t === "light" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", THEME);
+  store("theme", THEME);
+  const lbl = $("themeLbl"), ico = $("themeIcon");
+  if (lbl) lbl.textContent = THEME === "dark" ? "فاتح" : "داكن";
+  if (ico) ico.innerHTML = THEME === "dark" ? ICON_SUN : ICON_MOON;
+}
+applyTheme(THEME);
+$("btnTheme").addEventListener("click", () => {
+  applyTheme(THEME === "dark" ? "light" : "dark");
+  toast(THEME === "dark" ? "الوضع الداكن" : "الوضع الفاتح");
+});
 
 /* =======================================================================
    gate
